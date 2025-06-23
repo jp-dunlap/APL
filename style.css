@@ -1,6 +1,6 @@
 /*
     APL | Arkansas Palestine Liberation
-    Stylesheet v1.1
+    Stylesheet v1.2
     Aesthetic: "Truth in Plain Sight"
 */
 
@@ -10,25 +10,16 @@
     clarity, and moral seriousness.
 */
 body {
-    /* The canvas for our truth. Warm, serious, and professional. */
     background-color: #F9F6F2;
-    
-    /* Near-black for all text, ensuring maximum contrast and readability. */
     color: #1C1D21;
-    
-    /* Sets the primary, highly-readable font for all body content. */
     font-family: 'Open Sans', sans-serif;
 }
 
-/* Sets the authoritative serif font for all headings, lending them
-    the gravity and seriousness our subject matter demands.
-*/
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Lora', serif;
 }
 
 /* --- NAVIGATION STYLING --- */
-/* Defines the look and feel for the site's primary navigation. */
 .nav-link {
     @apply text-gray-800 hover:text-[#B91C1C] transition-colors duration-200 text-base sm:text-lg pb-1;
 }
@@ -37,61 +28,43 @@ h1, h2, h3, h4, h5, h6 {
     @apply text-[#B91C1C] font-bold border-b-2 border-[#B91C1C];
 }
 
+/* --- CASE FILE CARD STYLING --- */
+.case-file-card {
+    @apply block border border-gray-300 p-6 rounded-lg hover:shadow-lg hover:border-[#B91C1C] transition-all duration-300 flex flex-col justify-between;
+}
 
-/* UTILITY & INTERACTIVE ELEMENT STYLING
-    This section defines the styles for interactive components, ensuring they
-    are both functional and aesthetically aligned with our core principles.
-*/
 
-/* Custom styles for the <details> accordion element.
-    We override browser defaults to create a clean, minimalist interactive
-    component for revealing evidence and sourcing.
-*/
+/* UTILITY & INTERACTIVE ELEMENT STYLING */
 details > summary {
-    list-style: none; /* Hide the default triangle marker. */
+    list-style: none;
     cursor: pointer;
 }
 
 details > summary::-webkit-details-marker {
-    display: none; /* Hide the default marker for Webkit/Blink browsers. */
+    display: none;
 }
 
-/* A custom marker ('+') provides a clear visual cue for interaction.
-    It is designed to be subtle yet intuitive.
-*/
 details > summary::before {
     content: '+';
     margin-right: 0.5rem;
     display: inline-block;
     font-weight: bold;
-    transition: transform 0.2s ease-in-out; /* Smooth rotation on state change. */
+    transition: transform 0.2s ease-in-out;
 }
 
-/* The marker rotates on open, transforming into an 'x' to signify that
-    the section can be closed. This is a clear, standard UX pattern.
-*/
 details[open] > summary::before {
     transform: rotate(45deg);
 }
 
-/* WEAPONIZED LINK STYLING
-    Links are not merely functional; they are ideological signposts.
-    Their styling uses our sole accent color for strategic emphasis.
-*/
+/* WEAPONIZED LINK STYLING */
 .apl-link {
-    /* Our accent color, #B91C1C, is a deep red inspired by the
-        Palestinian flag. It represents blood, sacrifice, and revolution.
-        It is used with purpose and restraint.
-    */
+    /* Deep red from the Palestinian flag. Represents blood, sacrifice, revolution. */
     color: #B91C1C;
     text-decoration: underline;
-    text-underline-offset: 4px; /* Improves readability of the underline. */
+    text-underline-offset: 4px;
     transition: color 0.2s ease-in-out;
 }
 
-/* A subtle color shift on hover provides necessary user feedback
-    without being distracting.
-*/
 .apl-link:hover {
     color: #8C1C1C; 
 }
