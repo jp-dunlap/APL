@@ -5,110 +5,170 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APL | Arkansas Palestine Liberation</title>
     
+    <!-- Tailwind CSS via CDN for rapid, utility-first styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
-
+    
+    <!-- Google Fonts: Lora for authoritative serif headings, Open Sans for readable sans-serif body text -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body class="bg-light-cream text-near-black antialiased">
 
+    <!-- Custom Styles: Defining the "Truth in Plain Sight" aesthetic -->
+    <style>
+        /*
+            Core Palette:
+            - #F9F6F2 (Light Cream): The canvas for our truth. Warm, serious, and professional.
+            - #1C1D21 (Near Black): For all text, ensuring maximum contrast and readability.
+            - #B91C1C (Deep Red): Our sole accent color. Inspired by the Palestinian flag, used with strategic purpose for links and key highlights. It represents blood, sacrifice, and revolution.
+        */
+        body {
+            background-color: #F9F6F2;
+            color: #1C1D21;
+            font-family: 'Open Sans', sans-serif;
+        }
+        /* Style headings with the Lora serif font for authority and gravity */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lora', serif;
+        }
+        /* Custom styles for the accordion (<details>) element to match our aesthetic */
+        details > summary {
+            list-style: none; /* Hide the default marker */
+            cursor: pointer;
+        }
+        details > summary::-webkit-details-marker {
+            display: none; /* Hide the default marker for Webkit browsers */
+        }
+        /* Add a custom marker that rotates on open/close */
+        details > summary::before {
+            content: '+';
+            margin-right: 0.5rem;
+            display: inline-block;
+            transition: transform 0.2s ease-in-out;
+        }
+        details[open] > summary::before {
+            transform: rotate(45deg);
+        }
+        /* Style for our key links, weaponized with our accent color */
+        .apl-link {
+            color: #B91C1C;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            transition: color 0.2s ease-in-out;
+        }
+        .apl-link:hover {
+            color: #8C1C1C; /* Darken on hover */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Main Container: Provides consistent padding and a max-width for optimal readability on all screen sizes -->
     <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
 
+        <!-- SECTION 1: HEADER & MANIFESTO -->
+        <!-- This is our opening declaration. It uses typography and negative space to establish immediate authority. -->
         <header class="text-center mb-20 sm:mb-32">
-            <h1 id="main-title" class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight font-lora">
-                Arkansas Palestine Liberation
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+                Arkansas Palestine Liberation (APL)
             </h1>
-            <p class="mt-4 text-lg sm:text-xl text-gray-700 font-open-sans">
-                The State of Arkansas is complicit in Israeli apartheid. This project is the evidence.
+            <p class="mt-4 text-lg sm:text-xl text-gray-700">
+                The State of Arkansas is complicit in the oppression of the Palestinian people. This project is the evidence.
             </p>
         </header>
 
-        <section id="premise" class="mb-20 sm:mb-28">
-            <h2 class="text-3xl font-bold mb-6 font-lora">A Frontline in the Natural State</h2>
-            <div class="space-y-4 text-base leading-relaxed text-gray-800 font-open-sans">
+        <!-- SECTION 2: THE PREMISE -->
+        <!-- Here, we articulate the 'why' of the project, framing the local struggle within the global context. -->
+        <section class="mb-20 sm:mb-28">
+            <h2 class="text-3xl font-bold mb-6">A Frontline in the Natural State</h2>
+            <div class="space-y-4 text-base leading-relaxed text-gray-800">
                 <p>
                     The struggle for Palestinian liberation is not confined to a distant land. It is here, woven into the fabric of our local economy, our political institutions, and our communities. Decisions made in Little Rock and Bentonville directly enable and sustain a system of apartheid and military occupation thousands of miles away. Corporations headquartered in Arkansas profit from this system, while our elected officials use our political power to shield it from accountability.
                 </p>
                 <p>
-                    This project rejects the myth of separation. We operate from a simple, unshakeable premise: a direct line runs from the Natural State to the occupation of Palestine. Our mission is to make that line visible. We weaponize data—meticulously sourced, rigorously verified, and presented with unapologetic clarity—to expose the architecture of complicity. This is not an archive; it is an active front in the struggle for justice.
+                    This project rejects the myth of separation. We operate from a simple, unshakeable premise: there is a direct line from the Natural State to the occupation of Palestine. Our mission is to make that line visible. We weaponize data—meticulously sourced, rigorously verified, and presented with unapologetic clarity—to expose the architecture of complicity that runs through our state. This is not merely an archive; it is an active front in the struggle for justice.
                 </p>
             </div>
         </section>
 
-        <section id="adversary-ledger" class="mb-20 sm:mb-28">
-            <h2 class="text-3xl font-bold mb-8 font-lora">The Adversary Ledger: Mapping Complicity</h2>
+        <!-- SECTION 3: THE ADVERSARY LEDGER -->
+        <!-- This is the core of our evidence. A clean grid introduces the targets of our investigation. -->
+        <section class="mb-20 sm:mb-28">
+            <h2 class="text-3xl font-bold mb-8">The Adversary Ledger: Mapping Complicity</h2>
             
-            <div id="political-targets">
-                <h3 class="text-2xl font-bold mt-8 mb-4 font-lora">Political Actors</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="dossier-card" data-target-id="boozman">
-                        <h4 class="font-bold text-lg">Senator John Boozman</h4>
-                        <p class="text-sm text-gray-600">Consistent voting for military aid and anti-BDS legislation.</p>
-                        <button class="details-button">View Dossier</button>
-                    </div>
-                    <div class="dossier-card" data-target-id="cotton">
-                        <h4 class="font-bold text-lg">Senator Tom Cotton</h4>
-                        <p class="text-sm text-gray-600">Proponent of increased military funding and aggressive pro-Israel policy.</p>
-                        <button class="details-button">View Dossier</button>
-                    </div>
+            <!-- Political Targets -->
+            <h3 class="text-2xl font-bold mt-8 mb-4">Political</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Dossier Card -->
+                <div class="border border-gray-300 p-4 rounded-md">
+                    <h4 class="font-bold text-lg">Senator John Boozman</h4>
+                    <p class="text-sm text-gray-600">Consistent voting record in favor of military aid and anti-BDS legislation.</p>
+                </div>
+                <!-- Dossier Card -->
+                <div class="border border-gray-300 p-4 rounded-md">
+                    <h4 class="font-bold text-lg">Senator Tom Cotton</h4>
+                    <p class="text-sm text-gray-600">Vocal proponent of increased military funding and aggressive pro-Israel foreign policy.</p>
+                </div>
+                 <!-- Add more political targets as identified -->
+            </div>
+
+            <!-- Corporate Targets -->
+            <h3 class="text-2xl font-bold mt-8 mb-4">Corporate</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Dossier Card -->
+                <div class="border border-gray-300 p-4 rounded-md">
+                    <h4 class="font-bold text-lg">Tyson Foods, Inc.</h4>
+                    <p class="text-sm text-gray-600">Investments in Israeli tech companies and business partnerships that violate the BDS call.</p>
+                </div>
+                 <!-- Add more corporate targets as identified -->
+            </div>
+
+             <!-- Institutional Targets -->
+            <h3 class="text-2xl font-bold mt-8 mb-4">Institutional</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                 <!-- Add institutional targets as identified -->
+                 <div class="border border-gray-200 p-4 rounded-md">
+                    <p class="text-sm text-center text-gray-500">Further intelligence gathering in progress.</p>
                 </div>
             </div>
 
-            <div id="corporate-targets" class="mt-12">
-                <h3 class="text-2xl font-bold mt-8 mb-4 font-lora">Corporate Entities</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="dossier-card" data-target-id="tyson">
-                        <h4 class="font-bold text-lg">Tyson Foods, Inc.</h4>
-                        <p class="text-sm text-gray-600">Investments in Israeli tech and business partnerships violating the BDS call.</p>
-                        <button class="details-button">View Dossier</button>
-                    </div>
-                    <div class="dossier-card-placeholder">
-                        <p class="text-sm text-center text-gray-500">Intelligence gathering in progress.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div id="institutional-targets" class="mt-12">
-                <h3 class="text-2xl font-bold mt-8 mb-4 font-lora">Institutional Enablers</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                     <div class="dossier-card-placeholder">
-                        <p class="text-sm text-center text-gray-500">Further analysis pending.</p>
-                    </div>
-                </div>
-            </div>
         </section>
 
-        <section id="methodology" class="mb-20 sm:mb-28">
-            <h2 class="text-3xl font-bold mb-6 font-lora">Our Method: Revolutionary Discipline</h2>
-            <p class="text-base leading-relaxed text-gray-800 mb-6 font-open-sans">
-                Our work is grounded in open-source intelligence (OSINT) and revolutionary discipline. All data presented is meticulously sourced from public records and cross-verified. We believe transparency is a revolutionary act. The following are the foundational source categories for our evidence.
+        <!-- SECTION 4: THE METHOD -->
+        <!-- This section builds legitimacy and trust by explaining our process with interactive accordions. -->
+        <section class="mb-20 sm:mb-28">
+            <h2 class="text-3xl font-bold mb-6">The Method: Revolutionary Discipline</h2>
+            <p class="text-base leading-relaxed text-gray-800 mb-6">
+                Our work is grounded in the principles of open-source intelligence and revolutionary discipline. All data presented by APL is meticulously sourced from public records and cross-verified to ensure accuracy. We believe that transparency is a revolutionary act. Below is a summary of the sources that form the foundation of our evidence.
             </p>
             <div class="space-y-4">
-                <details class="accordion-item">
-                    <summary class="accordion-title">Legislative & Government Records</summary>
-                    <p class="accordion-content">Analysis of congressional voting records from GovTrack.us and Congress.gov, text of sponsored legislation, and official statements from public office websites.</p>
+                <!-- Accordion Item -->
+                <details class="border-t border-gray-300 py-4">
+                    <summary class="font-bold text-lg">Legislative & Government Records</summary>
+                    <p class="pt-2 text-gray-700">Analysis of congressional voting records from GovTrack.us and Congress.gov, text of sponsored legislation, and official statements from public office websites.</p>
                 </details>
-                <details class="accordion-item">
-                    <summary class="accordion-title">Campaign Finance Data</summary>
-                    <p class="accordion-content">Examination of contributions and lobbying expenditures from the Federal Election Commission (FEC) and OpenSecrets.org to trace the flow of pro-Israel money in Arkansas politics.</p>
+                <!-- Accordion Item -->
+                <details class="border-t border-gray-300 py-4">
+                    <summary class="font-bold text-lg">Campaign Finance Data</summary>
+                    <p class="pt-2 text-gray-700">Examination of campaign contributions and lobbying expenditures from the Federal Election Commission (FEC) and OpenSecrets.org to trace the flow of pro-Israel money in Arkansas politics.</p>
                 </details>
-                <details class="accordion-item">
-                    <summary class="accordion-title">Corporate & Financial Filings</summary>
-                    <p class="accordion-content">Review of SEC filings, annual reports, and investment portfolios to identify corporate complicity and investments that violate the principles of Boycott, Divestment, and Sanctions (BDS).</p>
+                 <!-- Accordion Item -->
+                <details class="border-t border-b border-gray-300 py-4">
+                    <summary class="font-bold text-lg">Corporate & Financial Filings</summary>
+                    <p class="pt-2 text-gray-700">Review of SEC filings, annual reports, and investment portfolios to identify corporate complicity and investments that violate the principles of Boycott, Divestment, and Sanctions (BDS).</p>
                 </details>
             </div>
         </section>
 
-        <section id="alliance" class="mb-20 sm:mb-28">
-            <h2 class="text-3xl font-bold mb-6 font-lora">The Alliance: Join the Struggle</h2>
-            <div class="space-y-4 text-base leading-relaxed text-gray-800 font-open-sans">
+        <!-- SECTION 5: THE ALLIANCE -->
+        <!-- A direct call to action, turning the informed reader into a potential comrade. -->
+        <section class="mb-20 sm:mb-28">
+            <h2 class="text-3xl font-bold mb-6">The Alliance: Join the Struggle</h2>
+            <div class="space-y-4 text-base leading-relaxed text-gray-800">
                 <p>
                     Information is only powerful when it is used. This project is a tool for organizers, activists, journalists, and all Arkansans who stand for justice. Use this data. Share it. Confront your elected officials. Question these corporations. Build consciousness in your community.
                 </p>
                 <p>
-                    The struggle for a free Palestine is one of the great moral imperatives of our time. It is a struggle against colonialism, racism, and imperialism. It is our struggle. To connect with on-the-ground organizing in Arkansas, we encourage you to contact our allies.
+                    The struggle for a free Palestine is one of the great moral imperatives of our time. It is a struggle against colonialism, against racism, and against imperialism. It is our struggle. To connect with on-the-ground organizing in Arkansas, we encourage you to contact our allies.
                 </p>
                  <p class="pt-4">
                     Contact the <a href="#" class="apl-link">Arkansas Coalition for Justice in Palestine (ACJP)</a> to get involved.
@@ -116,23 +176,16 @@
             </div>
         </section>
 
+        <!-- FOOTER -->
+        <!-- Our final, reinforcing statement of principle. -->
         <footer class="text-center text-gray-600 border-t border-gray-300 pt-8">
-            <p class="font-bold text-lg mb-2 font-lora">From the River to the Sea, Palestine Will Be Free.</p>
-            <p class="text-sm font-open-sans">
+            <p class="font-bold text-lg mb-2">From the River to the Sea, Palestine Will Be Free.</p>
+            <p class="text-sm">
                 This project is licensed under the <a href="https://github.com/jp-dunlap/APL/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="apl-link">GNU Affero General Public License v3.0</a>.
             </p>
         </footer>
+
     </div>
 
-    <div id="dossier-modal" class="modal-container hidden">
-        <div class="modal-content">
-            <button id="modal-close-button" class="modal-close">&times;</button>
-            <div id="modal-body">
-                <!-- Dossier content will be dynamically loaded here by script.js -->
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
