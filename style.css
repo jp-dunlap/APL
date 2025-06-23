@@ -1,6 +1,6 @@
 /*
     APL | Arkansas Palestine Liberation
-    Stylesheet v1.0
+    Stylesheet v1.1
     Aesthetic: "Truth in Plain Sight"
 */
 
@@ -27,6 +27,17 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Lora', serif;
 }
 
+/* --- NAVIGATION STYLING --- */
+/* Defines the look and feel for the site's primary navigation. */
+.nav-link {
+    @apply text-gray-800 hover:text-[#B91C1C] transition-colors duration-200 text-base sm:text-lg pb-1;
+}
+
+.nav-link.active {
+    @apply text-[#B91C1C] font-bold border-b-2 border-[#B91C1C];
+}
+
+
 /* UTILITY & INTERACTIVE ELEMENT STYLING
     This section defines the styles for interactive components, ensuring they
     are both functional and aesthetically aligned with our core principles.
@@ -52,6 +63,7 @@ details > summary::before {
     content: '+';
     margin-right: 0.5rem;
     display: inline-block;
+    font-weight: bold;
     transition: transform 0.2s ease-in-out; /* Smooth rotation on state change. */
 }
 
