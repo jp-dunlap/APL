@@ -1,0 +1,85 @@
+/*
+    APL | Arkansas Palestine Liberation
+    Stylesheet v1.0
+    Aesthetic: "Truth in Plain Sight"
+*/
+
+/* CORE PALETTE & TYPOGRAPHY
+    This section defines the fundamental visual identity of the project.
+    The choices are minimalist and deliberate, designed to convey authority,
+    clarity, and moral seriousness.
+*/
+body {
+    /* The canvas for our truth. Warm, serious, and professional. */
+    background-color: #F9F6F2;
+    
+    /* Near-black for all text, ensuring maximum contrast and readability. */
+    color: #1C1D21;
+    
+    /* Sets the primary, highly-readable font for all body content. */
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Sets the authoritative serif font for all headings, lending them
+    the gravity and seriousness our subject matter demands.
+*/
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lora', serif;
+}
+
+/* UTILITY & INTERACTIVE ELEMENT STYLING
+    This section defines the styles for interactive components, ensuring they
+    are both functional and aesthetically aligned with our core principles.
+*/
+
+/* Custom styles for the <details> accordion element.
+    We override browser defaults to create a clean, minimalist interactive
+    component for revealing evidence and sourcing.
+*/
+details > summary {
+    list-style: none; /* Hide the default triangle marker. */
+    cursor: pointer;
+}
+
+details > summary::-webkit-details-marker {
+    display: none; /* Hide the default marker for Webkit/Blink browsers. */
+}
+
+/* A custom marker ('+') provides a clear visual cue for interaction.
+    It is designed to be subtle yet intuitive.
+*/
+details > summary::before {
+    content: '+';
+    margin-right: 0.5rem;
+    display: inline-block;
+    transition: transform 0.2s ease-in-out; /* Smooth rotation on state change. */
+}
+
+/* The marker rotates on open, transforming into an 'x' to signify that
+    the section can be closed. This is a clear, standard UX pattern.
+*/
+details[open] > summary::before {
+    transform: rotate(45deg);
+}
+
+/* WEAPONIZED LINK STYLING
+    Links are not merely functional; they are ideological signposts.
+    Their styling uses our sole accent color for strategic emphasis.
+*/
+.apl-link {
+    /* Our accent color, #B91C1C, is a deep red inspired by the
+        Palestinian flag. It represents blood, sacrifice, and revolution.
+        It is used with purpose and restraint.
+    */
+    color: #B91C1C;
+    text-decoration: underline;
+    text-underline-offset: 4px; /* Improves readability of the underline. */
+    transition: color 0.2s ease-in-out;
+}
+
+/* A subtle color shift on hover provides necessary user feedback
+    without being distracting.
+*/
+.apl-link:hover {
+    color: #8C1C1C; 
+}
