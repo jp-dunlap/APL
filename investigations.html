@@ -5,23 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Investigations | APL</title>
     
-    <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
     <!-- Google Fonts - Lora & Open Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        serif: ['Lora', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
 
     <!-- Linking to the external stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="antialiased flex flex-col min-h-screen">
+<body class="antialiased flex flex-col min-h-screen bg-[#F9F6F2] font-sans">
 
     <!-- Navigation Bar -->
     <nav class="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-4 mb-8">
         <div class="flex justify-between items-center">
-            <a href="index.html" class="font-bold text-xl tracking-tight text-gray-900">APL</a>
+            <a href="index.html" class="font-bold text-xl tracking-tight text-gray-900 font-serif">APL</a>
             <div class="space-x-4 sm:space-x-6">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="investigations.html" class="nav-link active">Investigations</a>
@@ -31,18 +45,103 @@
 
     <!-- Main Content Area -->
     <main class="flex-grow container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <div class="flex items-center justify-center h-full min-h-[50vh] border-2 border-dashed border-gray-300 rounded-lg">
-            <div class="text-center">
-                <h1 class="text-2xl font-semibold text-gray-400 tracking-wide">Awaiting New Intelligence</h1>
-                <p class="text-gray-500 mt-2">This dossier is being prepared for the next operation.</p>
+        
+        <!-- Header -->
+        <header class="text-center mb-12 sm:mb-16">
+            <h1 class="text-4xl sm:text-5xl font-bold tracking-tight font-serif">Mapping the Network of Complicity</h1>
+            <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-700">
+                Power is never abstract. It is a web of individuals, institutions, and capital. This is an intelligence ledger of the key entities that uphold and benefit from the occupation of Palestine, and the forces of resistance organizing to dismantle them.
+            </p>
+        </header>
+
+        <!-- The Adversary Ledger Section -->
+        <section id="adversary-ledger" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 font-serif">The Adversary Ledger</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                
+                <!-- Case File: The State Apparatus -->
+                <a href="investigation-state-apparatus.html" class="case-file-card">
+                    <div>
+                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Case File: The State Apparatus</p>
+                        <h3 class="text-2xl font-bold mt-2 font-serif">The Executive Committee</h3>
+                        <p class="mt-3 text-gray-800">An analysis of the executive, legislative, and judicial branches in Arkansas, revealing how the formal structures of government are utilized to enforce ruling class interests and a reactionary social agenda.</p>
+                    </div>
+                    <div class="mt-6">
+                        <span class="font-bold text-gray-900 font-serif">View Dossier &rarr;</span>
+                    </div>
+                </a>
+
+                <!-- Case File: The Political-Corporate Nexus -->
+                <a href="investigation-corporate-nexus.html" class="case-file-card">
+                    <div>
+                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Case File: The Political-Corporate Nexus</p>
+                        <h3 class="text-2xl font-bold mt-2 font-serif">The Architects of Power</h3>
+                        <p class="mt-3 text-gray-800">Mapping the flow of capital from major corporations like Walmart and Tyson Foods into the political machine, detailing the lobbying firms and financial contributions that translate economic power into policy.</p>
+                    </div>
+                    <div class="mt-6">
+                        <span class="font-bold text-gray-900 font-serif">View Dossier &rarr;</span>
+                    </div>
+                </a>
+
+                <!-- Case File: The Ideological Apparatus -->
+                <a href="investigation-ideological-apparatus.html" class="case-file-card">
+                     <div>
+                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Case File: The Ideological Apparatus</p>
+                        <h3 class="text-2xl font-bold mt-2 font-serif">Manufacturing Consent</h3>
+                        <p class="mt-3 text-gray-800">An examination of the media outlets, think tanks, and religious organizations that shape public discourse, legitimize the status quo, and suppress dissenting narratives within the state.</p>
+                    </div>
+                    <div class="mt-6">
+                        <span class="font-bold text-gray-900 font-serif">View Dossier &rarr;</span>
+                    </div>
+                </a>
+
+                <!-- Case File: ATRS Bonds -->
+                <a href="investigation-atrs-bonds.html" class="case-file-card">
+                    <div>
+                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Case File: ATRS-2025-0602</p>
+                        <h3 class="text-2xl font-bold mt-2 font-serif">The Auditor, The Agent, and the $50 Million Accommodation</h3>
+                        <p class="mt-3 text-gray-800">How Arkansas State Auditor Dennis Milligan orchestrated a political influence campaign to channel teacher retirement funds to the State of Israel.</p>
+                    </div>
+                     <div class="mt-6">
+                        <span class="font-bold text-gray-900 font-serif">View Dossier &rarr;</span>
+                    </div>
+                </a>
+
             </div>
-        </div>
+        </section>
+
+        <!-- Sites of Resistance Section -->
+        <section id="sites-of-resistance">
+            <h2 class="text-3xl font-bold text-center mb-8 font-serif">Sites of Resistance</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Card: Racial & Economic Justice -->
+                <div class="bg-white border border-gray-300 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold font-serif">Racial & Economic Justice</h3>
+                    <p class="mt-3 text-gray-800">Organizations confronting white supremacy, police violence, and capitalist exploitation. This includes labor unions, tenant rights groups, and abolitionist collectives fighting for the material liberation of the working class.</p>
+                </div>
+
+                <!-- Card: Feminist & LGBTQ+ Liberation -->
+                <div class="bg-white border border-gray-300 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold font-serif">Feminist & LGBTQ+ Liberation</h3>
+                    <p class="mt-3 text-gray-800">A network of groups defending bodily autonomy and fighting for reproductive justice. This includes abortion support networks and advocates for trans, non-binary, and queer liberation against patriarchal control.</p>
+                </div>
+
+                <!-- Card: Anti-Imperialist Solidarity -->
+                <div class="bg-white border border-gray-300 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold font-serif">Anti-Imperialist Solidarity</h3>
+                    <p class="mt-3 text-gray-800">Collectives and individuals engaged in direct solidarity with global liberation movements, working to expose local complicity in imperialism, settler-colonialism, and the war machine.</p>
+                </div>
+                
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
-    <footer class="text-center text-gray-600 border-t border-gray-300 pt-8 mt-auto">
+    <footer class="text-center text-gray-600 border-t border-gray-300 py-6 mt-auto">
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            <p class="font-bold text-lg mb-2">From the River to the Sea, Palestine Will Be Free.</p>
+            <p class="font-bold text-lg mb-2 font-serif">From the River to the Sea, Palestine Will Be Free.</p>
             <p class="text-sm">
                 This project is licensed under the <a href="https://github.com/jp-dunlap/APL/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="apl-link">GNU Affero General Public License v3.0</a>.
             </p>
