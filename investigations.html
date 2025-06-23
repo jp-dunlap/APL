@@ -11,72 +11,43 @@
     <!-- Google Fonts - Lora & Open Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
     <!-- Linking to the external stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="antialiased">
+<body class="antialiased flex flex-col min-h-screen">
 
     <!-- Navigation Bar -->
-    <nav class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-4 mb-8">
+    <nav class="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-4 mb-8">
         <div class="flex justify-between items-center">
-            <a href="index.html" class="font-bold text-xl tracking-tight">APL</a>
+            <a href="index.html" class="font-bold text-xl tracking-tight text-gray-900">APL</a>
             <div class="space-x-4 sm:space-x-6">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="investigations.html" class="nav-link active">Investigations</a>
-                 <!-- Future links can be added here -->
             </div>
         </div>
     </nav>
 
-    <!-- Main Container -->
-    <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
-
-        <!-- SECTION 1: HEADER -->
-        <header class="text-center mb-20 sm:mb-28">
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
-                The Dossiers
-            </h1>
-            <p class="mt-4 text-lg sm:text-xl text-gray-700">
-                A repository of intelligence exposing Arkansas-based complicity in Israeli apartheid.
-            </p>
-        </header>
-
-        <!-- SECTION 2: CASE FILES -->
-        <section>
-            <h2 class="text-3xl font-bold mb-8 border-b-2 border-gray-300 pb-4">Case Files</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                
-                <!-- Case File Card -->
-                <a href="investigation-atrs-bonds.html" class="case-file-card group">
-                    <div>
-                        <p class="text-sm font-semibold text-[#B91C1C] uppercase">Case File: ATRS-2025-0602</p>
-                        <h3 class="text-2xl font-bold mt-2">The Auditor's Mandate</h3>
-                        <p class="mt-3 text-gray-700">An investigation into the orchestrated political campaign to funnel $50 million from the Arkansas Teacher Retirement System into Israeli state bonds.</p>
-                    </div>
-                    <div class="mt-4 text-[#B91C1C] font-semibold group-hover:underline">
-                        Read Dossier &rarr;
-                    </div>
-                </a>
-
-                <!-- Placeholder for future investigations -->
-                <div class="border border-dashed border-gray-400 p-6 rounded-lg flex items-center justify-center">
-                    <p class="text-gray-500 text-center">New investigations pending intelligence review.</p>
-                </div>
-                
+    <!-- Main Content Area -->
+    <main class="flex-grow container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div class="flex items-center justify-center h-full min-h-[50vh] border-2 border-dashed border-gray-300 rounded-lg">
+            <div class="text-center">
+                <h1 class="text-2xl font-semibold text-gray-400 tracking-wide">Awaiting New Intelligence</h1>
+                <p class="text-gray-500 mt-2">This dossier is being prepared for the next operation.</p>
             </div>
-        </section>
+        </div>
+    </main>
 
-        <!-- FOOTER -->
-        <footer class="text-center text-gray-600 border-t border-gray-300 pt-8 mt-24">
+    <!-- Footer -->
+    <footer class="text-center text-gray-600 border-t border-gray-300 pt-8 mt-auto">
+        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
             <p class="font-bold text-lg mb-2">From the River to the Sea, Palestine Will Be Free.</p>
             <p class="text-sm">
                 This project is licensed under the <a href="https://github.com/jp-dunlap/APL/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="apl-link">GNU Affero General Public License v3.0</a>.
             </p>
-        </footer>
-
-    </div>
+        </div>
+    </footer>
 
     <!-- Linking to the external JavaScript file -->
     <script src="script.js"></script>
