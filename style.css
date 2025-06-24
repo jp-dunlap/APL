@@ -1,15 +1,12 @@
 /*
     APL | Arkansas Palestine Liberation
-    Stylesheet v2.0
-    Aesthetic: "Truth in Plain Sight" (Recalibrated)
+    Stylesheet v2.1
+    Aesthetic: "Truth in Plain Sight" (Final Calibration)
 */
 
-/* CORE PALETTE & TYPOGRAPHY
-    Updated to a stark, high-contrast, document-like palette.
-*/
 body {
-    background-color: #f8f9fa; /* Light grey background */
-    color: #212529; /* Dark grey text for readability */
+    background-color: #F9F6F2; /* Correct cream background */
+    color: #212529; 
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -19,13 +16,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* --- NAVIGATION STYLING --- */
 .nav-link {
-    @apply text-gray-700 hover:text-[#B91C1C] transition-colors duration-200 text-base sm:text-lg pb-1;
+    @apply text-gray-700 hover:text-[#B91C1C] transition-colors duration-200 text-base;
 }
 
-/* The 'active' state is simplified in the new design. 
-   This class is no longer given a special border. */
 .nav-link.active {
-    @apply text-gray-900 font-bold; 
+    @apply text-black font-bold; 
 }
 
 /* --- CASE FILE CARD STYLING --- */
@@ -33,9 +28,9 @@ h1, h2, h3, h4, h5, h6 {
     @apply block border border-gray-300 bg-white p-6 rounded-lg hover:shadow-lg hover:border-[#B91C1C] transition-all duration-300 flex flex-col justify-between;
 }
 
-/* --- BUTTON STYLING --- */
-.apl-button {
-    @apply inline-block bg-[#B91C1C] text-white font-bold py-3 px-8 rounded-md hover:bg-[#8C1C1C] transition-colors duration-300;
+/* --- REFINED BUTTON STYLING --- */
+.apl-button-outline {
+    @apply inline-block border-2 border-[#B91C1C] text-[#B91C1C] font-bold py-3 px-8 rounded-md hover:bg-[#B91C1C] hover:text-white transition-colors duration-300;
 }
 
 
@@ -75,5 +70,5 @@ details[open] > summary::before {
 
 /* FOOTER STYLING */
 footer hr {
-    border-color: #dee2e6; /* A light grey for the separator */
+    border-color: #dee2e6;
 }
