@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analysis: Power Structures | APL v4.3</title>
+    <title>Analysis: Power Structures | APL v4.4</title>
     
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/favicon.svg">
@@ -15,7 +15,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Custom Tailwind Configuration to match investigations.html -->
     <script>
         tailwind.config = {
             theme: {
@@ -36,14 +35,43 @@
         .nav-link:hover { color: #B91C1C; }
         .nav-link.active { color: #111827; font-weight: 700; border-bottom: 2px solid #B91C1C; }
         
-        /* Main layout and panel styling */
-        .main-grid { display: grid; grid-template-columns: 1fr 400px; gap: 1.5rem; align-items: flex-start; }
-        #network-container { height: 85vh; border-radius: 0.5rem; background-color: #ffffff; border: 1px solid #d1d5db; }
-        #analysis-panel { height: 85vh; background-color: #fff; border: 1px solid #d1d5db; border-radius: 0.5rem; display: flex; flex-direction: column; }
+        /* --- RESPONSIVE LAYOUT --- */
+        /* Mobile-first: Default to a single-column flex layout */
+        .main-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        #network-container {
+            height: 60vh; /* Adjusted height for mobile */
+            min-height: 400px;
+        }
+        #analysis-panel {
+            height: auto; /* Auto height to fit content on mobile */
+        }
+        
+        /* Desktop: Switch to two-column grid on screens wider than 1024px */
+        @media (min-width: 1024px) {
+            .main-grid {
+                display: grid;
+                grid-template-columns: 1fr 400px;
+                align-items: flex-start;
+            }
+            #network-container, #analysis-panel {
+                height: 85vh;
+            }
+        }
+        
+        /* Panel styling */
+        #network-container, #analysis-panel, .control-panel {
+            border-radius: 0.5rem;
+            background-color: #ffffff;
+            border: 1px solid #d1d5db;
+        }
         #analysis-panel-content { padding: 1.5rem; overflow-y: auto; }
+        .control-panel { padding: 1rem; margin-bottom: 1.5rem; }
         
         /* Control and filter styling */
-        .control-panel { background-color: #fff; border: 1px solid #d1d5db; border-radius: 0.5rem; padding: 1rem; margin-bottom: 1.5rem; }
         .filter-btn {
             background-color: #fff; border: 1px solid #d1d5db; color: #374151;
             padding: 0.5rem 1rem; border-radius: 0.375rem; font-size: 0.875rem; font-weight: 600;
@@ -70,7 +98,6 @@
     </style>
 </head>
 <body class="antialiased min-h-screen">
-    <!-- Updated Nav to match investigations.html -->
     <nav class="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-4 mb-8">
         <div class="flex justify-between items-center">
             <a href="index.html" class="font-bold text-2xl tracking-tight text-gray-900 font-serif">APL</a>
@@ -122,8 +149,7 @@
             const analysisPanelContent = document.getElementById('analysis-panel-content');
             const filterButtons = document.querySelectorAll('.filter-btn');
 
-            // --- DATASET V4.3 ---
-            // Added 'dossierFile' property for live synthesis
+            // --- DATASET V4.4 ---
             const rawNodes = [
                 {id: 1, label: 'S.H.\nSanders', group: 0, dossierFile: 'investigation-state-apparatus.html'},
                 {id: 2, label: 'Tom\nCotton', group: 0, dossierFile: 'investigation-propaganda-pipeline.html'},
@@ -145,7 +171,6 @@
                 {from: 40, to: 30, type: 'resistance'}, {from: 40, to: 4, type: 'resistance'}
             ];
 
-            // --- DATA ENRICHMENT ---
             const connectionCount = {};
             rawEdges.forEach(e => { connectionCount[e.from] = (connectionCount[e.from] || 0) + 1; connectionCount[e.to] = (connectionCount[e.to] || 0) + 1; });
             const groupNames = { 0: 'State Actor', 1: 'Corporate Power', 2: 'Financial/Pension', 3: 'Ideological Apparatus', 4: 'Resistance Network' };
@@ -165,8 +190,7 @@
             const edgesWithColors = rawEdges.map(e => { e.color = edgeColors[e.type] || '#9ca3af'; return e; });
             const nodes = new vis.DataSet(nodesWithData);
             const edges = new vis.DataSet(edgesWithColors);
-
-            // --- VIS.JS OPTIONS ---
+            
             const options = {
                 nodes: {
                     shape: 'dot',
@@ -194,20 +218,16 @@
             };
             const network = new vis.Network(container, { nodes, edges }, options);
 
-            // --- INTERACTION LOGIC (WITH LIVE SYNTHESIS) ---
             let activeNodeId = null;
 
             const selectNode = async (nodeId) => {
-                // Deselect previous node
                 if (activeNodeId) { nodes.update({ id: activeNodeId, borderWidth: 2, shadow: false }); }
                 activeNodeId = nodeId;
                 const nodeData = nodes.get(nodeId);
                 
-                // Highlight new node
                 nodes.update({ id: nodeId, borderWidth: 4, shadow: { enabled: true, color: 'rgba(185, 28, 28, 0.5)', size: 20, x: 0, y: 0 } });
                 network.focus(nodeId, { scale: 1.2, animation: { duration: 500, easingFunction: 'easeInOutQuad' } });
                 
-                // Set loading state in panel
                 analysisPanelContent.innerHTML = `<h3 class="font-serif">Accessing Dossier...</h3><p class="text-gray-500">Synthesizing intelligence for ${nodeData.label.replace('\\n', ' ')}.</p>`;
 
                 if (nodeData.dossierFile) {
@@ -219,7 +239,6 @@
                         const parser = new DOMParser();
                         const doc = parser.parseFromString(htmlText, 'text/html');
                         
-                        // Extract header and sections for synthesis
                         const header = doc.querySelector('header.mb-16');
                         const sections = doc.querySelectorAll('section.mb-16');
                         
@@ -235,7 +254,6 @@
                         analysisPanelContent.innerHTML = `<h3>Error</h3><p>Could not load dossier for ${nodeData.label.replace('\\n', ' ')}. File not found or connection issue.</p>`;
                     }
                 } else {
-                    // Fallback for nodes without a dossier file
                     analysisPanelContent.innerHTML = nodeData.details || `<h3>No Detailed Dossier</h3><p>Intelligence for this node is pending.</p>`;
                 }
             };
