@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network of Complicity | APL</title>
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+
+    <!-- Google Fonts - Lora & Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- vis.js Network Visualization Library -->
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        serif: ['Lora', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Linking to the external stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Custom styles for the network graph -->
+    <style>
+        #complicity-map {
+            width: 100%;
+            height: 80vh;
+            border: 1px solid #d1d5db; /* gray-300 */
+            background-color: #fff;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen bg-[#F9F6F2] font-sans">
+
+    <!-- Navigation Bar -->
+    <nav class="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-4 mb-8">
+        <div class="flex justify-between items-center">
+            <a href="index.html" class="font-bold text-xl tracking-tight text-gray-900 font-serif">APL</a>
+            <div class="space-x-4 sm:space-x-6">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="investigations.html" class="nav-link">Investigations</a>
+                <a href="network.html" class="nav-link active">Network</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl sm:text-5xl font-bold tracking-tight font-serif">The Web of Complicity</h1>
+            <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-700">
+                Power is not abstract; it is a meticulously constructed network of finance, policy, and ideology. This interactive map exposes the relationships that link Arkansas's political and corporate elite to the machinery of Israeli apartheid. Click on a node to reveal its dossier.
+            </p>
+        </header>
+
+        <!-- Network Visualization Container -->
+        <section id="network-container">
+            <div id="complicity-map"></div>
+        </section>
+
+    </main>
+    
+    <!-- Modal for Node Details -->
+    <div id="node-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-[#F9F6F2] rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-8 relative prose prose-lg">
+            <button id="modal-close" class="absolute top-4 right-4 text-gray-600 hover:text-black text-3xl font-bold">&times;</button>
+            <div id="modal-content">
+                <!-- Content will be injected by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="text-center text-gray-600 border-t border-gray-300 py-6 mt-auto">
+        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <p class="font-bold text-lg mb-2 font-serif">From the River to the Sea, Palestine Will Be Free.</p>
+            <p class="text-sm">
+                This project is licensed under the <a href="https://github.com/jp-dunlap/APL/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="apl-link">GNU Affero General Public License v3.0</a>.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Data for the network -->
+    <script src="network-data.js"></script>
+    <!-- Script to initialize and manage the network -->
+    <script src="network-script.js"></script>
+</body>
+</html>
+```javascript
+/*
+    APL | Arkansas Palestine Liberation
+    Intelligence File: network-data.js
+    Description: This file contains the raw data for the Network of Complicity visualization.
+                 It defines the entities (nodes) and their relationships (edges).
+                 This data structure is designed to be easily expanded.
+*/
+
+// --- NODE DEFINITIONS ---
+// Nodes represent the key actors in the network of complicity.
+// 'group' determines the color and category.
+// 'label' is the display name.
+// 'details' contains the intelligence for the modal pop-up.
+
+const nodes = new vis.DataSet([
+    // GROUP 0: State Actors (Red)
+    { id: 1, label: 'S.H. Sanders', group: 0, details: "<h3>Target Profile: Governor Sarah Huckabee Sanders (R)</h3><p><strong>Ideological Alignment:</strong> Far-right, MAGA-aligned, with pronounced Christian Nationalist undertones. Her administration spearheads reactionary legislation and advances a nationalist narrative beneficial to corporate elites and the Israeli state.</p><p><strong>Key Actions:</strong> Championed the Arkansas LEARNS Act to privatize education, signed multiple corporate tax cuts, and aggressively passed anti-trans legislation as a 'culture war' distraction.</p>" },
+    { id: 2, label: 'Tom Cotton', group: 0, details: "<h3>Target Profile: Senator Tom Cotton (R)</h3><p><strong>Ideological Alignment:</strong> Aggressively interventionist, pro-Israel hardliner. A key federal voice echoing AIPAC narratives and advocating for confrontational foreign policy.</p><p><strong>Key Actions:</strong> Consistently votes for maximum military aid to Israel, a primary recipient of pro-Israel PAC funding, and a vocal opponent of the BDS movement and international law mechanisms like the ICC.</p>" },
+    { id: 3, label: 'Dennis Milligan', group: 0, details: "<h3>Target Profile: State Auditor Dennis Milligan (R)</h3><p><strong>Ideological Alignment:</strong> Right-wing financial activist, member of the State Financial Officers Foundation (SFOF) network, which combats 'woke capitalism'.</p><p><strong>Key Actions:</strong> Orchestrated a political influence campaign to pressure the Arkansas Teacher Retirement System (ATRS) into investing $50 million in Israeli state bonds, leveraging his political office to advance a geopolitical agenda.</p>" },
+    { id: 4, label: 'AR General Assembly', group: 0, details: "<h3>Target Profile: Arkansas General Assembly</h3><p><strong>Mechanism of Control:</strong> The Republican supermajority functions as a machine for enacting the ruling class agenda, rubber-stamping executive actions and passing legislation drafted by corporate lobbyists.</p><p><strong>Key Actions:</strong> Passed Act 710 to suppress Palestine solidarity, systematically cut corporate taxes, and defeated pro-labor legislation.</p>" },
+
+    // GROUP 1: Corporate Power (Blue)
+    { id: 10, label: 'Walmart', group: 1, details: "<h3>Target Profile: Walmart Inc.</h3><p><strong>Mechanism of Influence:</strong> As the world's largest retailer, its influence is multi-faceted. The Walton Family Foundation (WFF) is a primary vehicle for promoting market-based education 'reform' that undermines public schools.</p><p><strong>Complicity:</strong> The WFF funds pro-imperialist think tanks, and Walmart stores sell Israeli products like SodaStream, directly profiting from the occupation.</p>" },
+    { id: 11, label: 'Tyson Foods', group: 1, details: "<h3>Target Profile: Tyson Foods & The Poultry Cartel</h3><p><strong>Mechanism of Influence:</strong> Exerts immense pressure through targeted political contributions to maintain weak environmental regulations and suppress labor organizing.</p><p><strong>Complicity:</strong> Funnels hundreds of thousands into Arkansas congressional campaigns, particularly to figures like Senator John Boozman, ensuring legislative subservience to its corporate interests.</p>" },
+    { id: 12, label: 'Stephens Inc.', group: 1, details: "<h3>Target Profile: Stephens Inc.</h3><p><strong>Mechanism of Influence:</strong> A major privately owned financial services firm based in Little Rock, wielding significant economic and political power.</p><p><strong>Complicity:</strong> A major financial backer of key pro-Israel politicians, including Senator Tom Cotton, providing the capital that fuels the political pipeline for pro-apartheid policies.</p>" },
+    { id: 13, label: 'Lockheed Martin', group: 1, details: "<h3>Target Profile: Lockheed Martin</h3><p><strong>Mechanism of Influence:</strong> The world's largest defense contractor, with major production facilities in Camden, AR, producing HIMARS rocket systems and PAC-3 missiles.</p><p><strong>Complicity:</strong> Directly supplies the Israeli military with advanced weaponry used in its assaults on Palestine. Its products are 'combat-proven' in conflict zones, linking Arkansas's economy to global state violence.</p>" },
+    { id: 14, label: 'Teva Pharma', group: 1, details: "<h3>Target Profile: Teva Pharmaceuticals</h3><p><strong>Mechanism of Influence:</strong> An Israeli multinational pharmaceutical giant.</p><p><strong>Complicity:</strong> Systematically benefits from the occupation by exploiting a 'captive Palestinian market' under the Paris Protocol. Its inclusion on the Arkansas State Formulary creates a direct pipeline for state healthcare dollars to a corporation embedded in the structure of apartheid.</p>" },
+
+    // GROUP 2: Financial/Pension Systems (Green)
+    { id: 20, label: 'ATRS', group: 2, details: "<h3>Target Profile: Arkansas Teacher Retirement System</h3><p><strong>Mechanism of Influence:</strong> Manages ~$23 billion in pension funds for Arkansas educators.</p><p><strong>Complicity:</strong> Bowed to political pressure to invest $50 million directly in Israeli state bonds. Also holds significant investments in war-profiteering corporations like Boeing and Lockheed Martin, and tech companies like Google (Project Nimbus), via asset managers like BlackRock.</p>" },
+    { id: 21, label: 'UAMS Foundation', group: 2, details: "<h3>Target Profile: UAMS Foundation</h3><p><strong>Mechanism of Influence:</strong> Manages over $1.9 billion in assets to support the UA System, including the University of Arkansas for Medical Sciences.</p><p><strong>Complicity:</strong> Its endowment is likely invested in diversified portfolios that include major defense contractors like RTX (Raytheon) and Lockheed Martin, creating a contradiction where an institution of healing profits from war. Publicly partners with the Israel Cancer Research Fund (ICRF), lending institutional prestige to an Israeli national fund and normalizing the apartheid state.</p>" },
+
+    // GROUP 3: Lobbying/Ideological Apparatus (Purple)
+    { id: 30, label: 'AIPAC', group: 3, details: "<h3>Target Profile: American Israel Public Affairs Committee</h3><p><strong>Mechanism of Influence:</strong> A powerful national lobbying organization that architects the 'just war' narrative for Israel, framing all military actions as defensive while aggressively discrediting human rights organizations.</p><p><strong>Complicity:</strong> Provides the talking points and political pressure that are laundered through Arkansas's political and media elites.</p>" },
+    { id: 31, label: 'ADL', group: 3, details: "<h3>Target Profile: Anti-Defamation League</h3><p><strong>Mechanism of Influence:</strong> Promotes the controversial IHRA definition of antisemitism to conflate criticism of Israel with bigotry.</p><p><strong>Complicity:</strong> Its lobbying efforts provide the ideological basis for repressive legislation like Arkansas Act 710, chilling free speech and shielding the Israeli state from accountability.</p>" },
+    { id: 32, label: 'Democrat-Gazette', group: 3, details: "<h3>Target Profile: Arkansas Democrat-Gazette</h3><p><strong>Mechanism of Influence:</strong> The state's dominant newspaper, owned by WEHCO Media, with a consistently conservative, pro-business editorial stance.</p><p><strong>Complicity:</strong> Functions as a local echo chamber, uncritically amplifying pro-Israel narratives and systematically omitting Palestinian perspectives, thereby manufacturing consent for the status quo.</p>" }
+]);
+
+
+// --- EDGE DEFINITIONS ---
+// Edges represent the connections between the nodes.
+// 'from' and 'to' reference the node ids.
+// 'label' describes the nature of the connection.
+
+const edges = new vis.DataSet([
+    // State -> Corporate/Financial
+    { from: 4, to: 10, label: 'Tax Cuts' }, // Gen Assembly -> Walmart
+    { from: 4, to: 11, label: 'Weak Regulation' }, // Gen Assembly -> Tyson
+    { from: 4, to: 14, label: 'Act 710 (Anti-BDS)' }, // Gen Assembly -> Teva
+    { from: 1, to: 4, label: 'Agenda Setting' }, // Sanders -> Gen Assembly
+    { from: 3, to: 20, label: 'Political Pressure' }, // Milligan -> ATRS
+    { from: 20, to: 13, label: 'Pension Investment' }, // ATRS -> Lockheed
+    { from: 21, to: 13, label: 'Endowment Investment' }, // UAMS -> Lockheed
+    { from: 20, to: 100, label: 'Israel Bond Purchase' }, // Dummy node for Israel itself
+    
+    // Corporate/Financial -> State
+    { from: 12, to: 2, label: 'Financial Backing' }, // Stephens Inc -> Cotton
+    { from: 11, to: 2, label: 'Campaign Donations' }, // Tyson -> Cotton (and others)
+
+    // Lobbying -> State/Media
+    { from: 30, to: 2, label: 'Talking Points' }, // AIPAC -> Cotton
+    { from: 30, to: 1, label: 'Narrative Framing' }, // AIPAC -> Sanders
+    { from: 31, to: 4, label: 'IHRA Legislation' }, // ADL -> Gen Assembly
+    { from: 30, to: 32, label: 'Propaganda Laundering' }, // AIPAC -> Dem-Gaz
+    
+    // Inter-Corporate
+    { from: 10, to: 100, label: 'Sells Israeli Goods' }, // Walmart sells SodaStream etc.
+    { from: 21, to: 100, label: 'Academic Partnership (ICRF)' }, // UAMS -> Israel
+]);
+```javascript
+/*
+    APL | Arkansas Palestine Liberation
+    Script File: network-script.js
+    Description: This script initializes and controls the interactive network graph
+                 on network.html. It uses vis.js to render the data from
+                 network-data.js and handles user interactions.
+*/
+
+document.addEventListener('DOMContentLoaded', () => {
+    // --- DOM ELEMENT SELECTION ---
+    const container = document.getElementById('complicity-map');
+    const modal = document.getElementById('node-modal');
+    const modalContent = document.getElementById('modal-content');
+    const modalClose = document.getElementById('modal-close');
+
+    // --- VIS.JS NETWORK OPTIONS ---
+    // These options define the appearance and physics of the network graph.
+    // They are styled to match the APL 'Truth in Plain Sight' aesthetic.
+    const options = {
+        autoResize: true,
+        height: '100%',
+        width: '100%',
+        nodes: {
+            shape: 'dot',
+            size: 25,
+            font: {
+                size: 18,
+                color: '#1C1D21', // Main text color
+                face: 'Open Sans'
+            },
+            borderWidth: 2,
+            shadow: true,
+        },
+        edges: {
+            width: 2,
+            color: {
+                color: '#6b7280', // gray-500
+                highlight: '#B91C1C', // APL Red
+                hover: '#B91C1C'
+            },
+            arrows: {
+                to: { enabled: true, scaleFactor: 0.7 }
+            },
+            font: {
+                size: 12,
+                color: '#374151', // gray-700
+                strokeWidth: 0
+            },
+            smooth: {
+                enabled: true,
+                type: 'dynamic'
+            }
+        },
+        groups: {
+            // Group styles correspond to categories in network-data.js
+            0: { color: { background: '#B91C1C', border: '#8C1C1C' }, font: {color: 'white'} }, // State Actors (Red)
+            1: { color: { background: '#3b82f6', border: '#1d4ed8' }, font: {color: 'white'} }, // Corporate Power (Blue)
+            2: { color: { background: '#16a34a', border: '#15803d' }, font: {color: 'white'} }, // Financial/Pension (Green)
+            3: { color: { background: '#6d28d9', border: '#5b21b6' }, font: {color: 'white'} }  // Lobbying/Ideological (Purple)
+        },
+        physics: {
+            // BarnesHut is a good algorithm for natural-looking layouts.
+            barnesHut: {
+                gravitationalConstant: -20000,
+                centralGravity: 0.1,
+                springLength: 200,
+                springConstant: 0.05,
+                damping: 0.3
+            },
+            solver: 'barnesHut',
+            stabilization: {
+                iterations: 2500
+            }
+        },
+        interaction: {
+            hover: true,
+            tooltipDelay: 200
+        }
+    };
+
+    // --- DATA INITIALIZATION ---
+    // The nodes and edges are defined in network-data.js
+    const data = {
+        nodes: nodes,
+        edges: edges,
+    };
+
+    // --- NETWORK CREATION ---
+    // Initialize the vis.js network with the container, data, and options.
+    const network = new vis.Network(container, data, options);
+
+    // --- EVENT LISTENERS ---
+
+    // 1. Network Click Event: Open modal with node details.
+    network.on('click', (properties) => {
+        const { nodes } = properties;
+        if (nodes.length > 0) {
+            const nodeId = nodes[0];
+            const nodeData = data.nodes.get(nodeId);
+            
+            if (nodeData && nodeData.details) {
+                // Populate and show the modal
+                modalContent.innerHTML = nodeData.details;
+                modal.classList.remove('hidden');
+            }
+        }
+    });
+
+    // 2. Modal Close Button Event
+    modalClose.addEventListener('click', () => {
+        modal.classList.add('hidden');
+        modalContent.innerHTML = ''; // Clear content
+    });
+
+    // 3. Close Modal with Escape Key
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+            modal.classList.add('hidden');
+            modalContent.innerHTML = '';
+        }
+    });
+    
+    // 4. Close Modal by clicking on the background overlay
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.classList.add('hidden');
+            modalContent.innerHTML = '';
+        }
+    });
+
+    console.log("APL Network Visualization Initialized. The web of complicity is now exposed.");
+});
