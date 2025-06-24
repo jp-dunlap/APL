@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <style>
+    .apl-text {
+      font-family: 'Lora', serif;
+      font-weight: bold;
+      font-size: 60px;
+      fill: #B91C1C;
+    }
+  </style>
+  <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" class="apl-text">APL</text>
+</svg>
