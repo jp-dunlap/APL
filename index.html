@@ -8,47 +8,38 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/favicon.svg">
     
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
-    
-    
-    <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts - Lora & Open Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
-    <!-- Linking to the external stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 
-    <!-- Navigation Bar -->
     <nav class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-4">
         <div class="flex justify-between items-center">
             <a href="index.html" class="font-bold text-xl tracking-tight">APL</a>
             <div class="space-x-4 sm:space-x-6">
                 <a href="index.html" class="nav-link active">Home</a>
                 <a href="investigations.html" class="nav-link">Investigations</a>
-                <!-- Future links can be added here -->
+                <a href="network.html" class="nav-link">Network</a>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="flex-grow container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 flex items-center">
         <div class="text-center w-full py-16 sm:py-24">
-            <!-- Main Header -->
             <header>
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight font-serif">
                     Arkansas Palestine Liberation
                 </h1>
                 <p class="mt-6 text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto">
                     Mapping Complicity. Demanding Accountability. Exposing the direct lines from the Natural State to the occupation of Palestine.
                 </p>
                 <div class="mt-10">
-                    <a href="investigations.html" class="inline-block bg-[#B91C1C] text-white font-bold py-3 px-8 rounded-md hover:bg-[#8C1C1C] transition-colors duration-300">
+                    <a href="investigations.html" class="apl-button">
                         Explore Investigations
                     </a>
                 </div>
@@ -56,18 +47,15 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="text-center text-gray-600 border-t border-gray-300 py-6 mt-auto">
+    <footer class="text-center text-gray-600 pt-8 pb-6">
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            <p class="font-bold text-lg mb-2">From the River to the Sea, Palestine Will Be Free.</p>
+            <hr class="mb-6">
+            <p class="font-bold text-lg mb-2 font-serif">From the River to the Sea, Palestine Will Be Free.</p>
             <p class="text-sm">
                 This project is licensed under the <a href="https://github.com/jp-dunlap/APL/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="apl-link">GNU Affero General Public License v3.0</a>.
             </p>
         </div>
     </footer>
 
-    <!-- Linking to the external JavaScript file -->
-    <script src="script.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
 </html>
