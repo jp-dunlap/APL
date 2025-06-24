@@ -8,17 +8,12 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/favicon.svg">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
-    
-    <!-- Google Fonts - Lora & Open Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Custom Tailwind Configuration -->
     <script>
         tailwind.config = {
             theme: {
@@ -32,26 +27,24 @@
         }
     </script>
 
-    <!-- Linking to the external stylesheet -->
+    <!-- The original stylesheet link, preserved to maintain all styles -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="antialiased flex flex-col min-h-screen bg-[#F9F6F2] font-sans">
 
-    <!-- Navigation Bar -->
     <nav class="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-4 mb-8">
         <div class="flex justify-between items-center">
             <a href="index.html" class="font-bold text-xl tracking-tight text-gray-900 font-serif">APL</a>
             <div class="space-x-4 sm:space-x-6">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="investigations.html" class="nav-link active">Investigations</a>
+                <a href="network.html" class="nav-link">Network</a>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content Area -->
     <main class="flex-grow container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         
-        <!-- Header -->
         <header class="text-center mb-12 sm:mb-16">
             <h1 class="text-4xl sm:text-5xl font-bold tracking-tight font-serif">Mapping the Network of Complicity</h1>
             <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-700">
@@ -59,13 +52,11 @@
             </p>
         </header>
 
-        <!-- The Adversary Ledger Section -->
         <section id="adversary-ledger" class="mb-16">
             <h2 class="text-3xl font-bold text-center mb-8 font-serif">The Adversary Ledger</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                 
-                <!-- Case File: The State Apparatus -->
-                <a href="investigation-state-apparatus.html" class="case-file-card">
+                <div class="case-file-card" data-dossier="investigation-state-apparatus.html" role="button" tabindex="0">
                     <div>
                         <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Case File: The State Apparatus</p>
                         <h3 class="text-2xl font-bold mt-2 font-serif">The Executive Committee</h3>
@@ -74,10 +65,9 @@
                     <div class="mt-6">
                         <span class="font-bold text-gray-900 font-serif">View Dossier &rarr;</span>
                     </div>
-                </a>
+                </div>
 
-                <!-- Case File: The Political-Corporate Nexus -->
-                <a href="investigation-corporate-nexus.html" class="case-file-card">
+                <div class="case-file-card" data-dossier="investigation-corporate-nexus.html" role="button" tabindex="0">
                     <div>
                         <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Case File: The Political-Corporate Nexus</p>
                         <h3 class="text-2xl font-bold mt-2 font-serif">The Architects of Power</h3>
@@ -86,10 +76,9 @@
                     <div class="mt-6">
                         <span class="font-bold text-gray-900 font-serif">View Dossier &rarr;</span>
                     </div>
-                </a>
+                </div>
 
-                <!-- Case File: The Ideological Apparatus -->
-                <a href="investigation-ideological-apparatus.html" class="case-file-card">
+                <div class="case-file-card" data-dossier="investigation-ideological-apparatus.html" role="button" tabindex="0">
                      <div>
                         <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Case File: The Ideological Apparatus</p>
                         <h3 class="text-2xl font-bold mt-2 font-serif">Manufacturing Consent</h3>
@@ -98,10 +87,9 @@
                     <div class="mt-6">
                         <span class="font-bold text-gray-900 font-serif">View Dossier &rarr;</span>
                     </div>
-                </a>
+                </div>
 
-                <!-- Case File: Financial Complicity -->
-                <a href="investigation-atrs-bonds.html" class="case-file-card">
+                <div class="case-file-card" data-dossier="investigation-atrs-bonds.html" role="button" tabindex="0">
                     <div>
                         <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Case File: Financial Complicity</p>
                         <h3 class="text-2xl font-bold mt-2 font-serif">The Pension Fund Pipeline</h3>
@@ -110,10 +98,9 @@
                      <div class="mt-6">
                         <span class="font-bold text-gray-900 font-serif">View Dossier &rarr;</span>
                     </div>
-                </a>
+                </div>
                 
-                <!-- Case File: Legislative Complicity -->
-                <a href="investigation-act-710.html" class="case-file-card">
+                <div class="case-file-card" data-dossier="investigation-act-710.html" role="button" tabindex="0">
                     <div>
                         <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Case File: Legislative Complicity</p>
                         <h3 class="text-2xl font-bold mt-2 font-serif">The Lawfare Apparatus</h3>
@@ -122,10 +109,9 @@
                      <div class="mt-6">
                         <span class="font-bold text-gray-900 font-serif">View Dossier &rarr;</span>
                     </div>
-                </a>
+                </div>
 
-                <!-- NEW Case File: The Healthcare-Apartheid Nexus -->
-                <a href="investigation-healthcare-nexus.html" class="case-file-card">
+                <div class="case-file-card" data-dossier="investigation-healthcare-nexus.html" role="button" tabindex="0">
                     <div>
                         <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Case File: Healthcare & Financial Complicity</p>
                         <h3 class="text-2xl font-bold mt-2 font-serif">The Healthcare-Apartheid Nexus</h3>
@@ -134,10 +120,9 @@
                     <div class="mt-6">
                         <span class="font-bold text-gray-900 font-serif">View Dossier &rarr;</span>
                     </div>
-                </a>
+                </div>
 
-                <!-- NEW Case File: The Propaganda Pipeline -->
-                <a href="investigation-propaganda-pipeline.html" class="case-file-card">
+                <div class="case-file-card" data-dossier="investigation-propaganda-pipeline.html" role="button" tabindex="0">
                     <div>
                         <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Case File: The Ideological Apparatus</p>
                         <h3 class="text-2xl font-bold mt-2 font-serif">The Propaganda Pipeline</h3>
@@ -146,10 +131,9 @@
                     <div class="mt-6">
                         <span class="font-bold text-gray-900 font-serif">View Dossier &rarr;</span>
                     </div>
-                </a>
+                </div>
 
-                <!-- NEW Case File: The Military-Police Nexus -->
-                <a href="investigation-military-police-nexus.html" class="case-file-card">
+                <div class="case-file-card" data-dossier="investigation-military-police-nexus.html" role="button" tabindex="0">
                     <div>
                         <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Case File: The Military-Industrial Complex</p>
                         <h3 class="text-2xl font-bold mt-2 font-serif">The Military-Police Nexus</h3>
@@ -158,29 +142,24 @@
                     <div class="mt-6">
                         <span class="font-bold text-gray-900 font-serif">View Dossier &rarr;</span>
                     </div>
-                </a>
-
+                </div>
             </div>
         </section>
 
-        <!-- Sites of Resistance Section -->
         <section id="sites-of-resistance">
             <h2 class="text-3xl font-bold text-center mb-8 font-serif">Sites of Resistance</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
-                <!-- Card: Racial & Economic Justice -->
                 <div class="bg-white border border-gray-300 p-6 rounded-lg">
                     <h3 class="text-xl font-bold font-serif">Racial & Economic Justice</h3>
                     <p class="mt-3 text-gray-800">Organizations confronting white supremacy, police violence, and capitalist exploitation. This includes labor unions, tenant rights groups, and abolitionist collectives fighting for the material liberation of the working class.</p>
                 </div>
 
-                <!-- Card: Feminist & LGBTQ+ Liberation -->
                 <div class="bg-white border border-gray-300 p-6 rounded-lg">
                     <h3 class="text-xl font-bold font-serif">Feminist & LGBTQ+ Liberation</h3>
                     <p class="mt-3 text-gray-800">A network of groups defending bodily autonomy and fighting for reproductive justice. This includes abortion support networks and advocates for trans, non-binary, and queer liberation against patriarchal control.</p>
                 </div>
 
-                <!-- Card: Anti-Imperialist Solidarity -->
                 <div class="bg-white border border-gray-300 p-6 rounded-lg">
                     <h3 class="text-xl font-bold font-serif">Anti-Imperialist Solidarity</h3>
                     <p class="mt-3 text-gray-800">Collectives and individuals engaged in direct solidarity with global liberation movements, working to expose local complicity in imperialism, settler-colonialism, and the war machine.</p>
@@ -190,8 +169,19 @@
         </section>
 
     </main>
+    
+    <div id="dossier-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[95vh] flex flex-col">
+            <header class="flex justify-between items-center p-4 border-b border-gray-300">
+                <h2 class="text-2xl font-bold font-serif text-gray-900">Dossier Access Terminal</h2>
+                <button id="modal-close" class="text-gray-600 hover:text-black text-4xl font-bold">&times;</button>
+            </header>
+            <div id="modal-content" class="overflow-y-auto p-2 sm:p-4 md:p-6">
+                <!-- Dossier content will be injected by investigations-script.js -->
+            </div>
+        </div>
+    </div>
 
-    <!-- Footer -->
     <footer class="text-center text-gray-600 border-t border-gray-300 py-6 mt-auto">
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
             <p class="font-bold text-lg mb-2 font-serif">From the River to the Sea, Palestine Will Be Free.</p>
@@ -201,8 +191,9 @@
         </div>
     </footer>
 
-    <!-- Linking to the external JavaScript file -->
-    <script src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <!-- The operational script will be loaded separately -->
+    <!-- Note: Original script tags for flowbite.js and script.js have been intentionally omitted
+         as per the user directive to provide a pure HTML structure first. The new
+         investigations-script.js will be provided next. -->
 </body>
 </html>
