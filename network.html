@@ -3,252 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Network of Complicity | APL</title>
-
+    <title>Analysis: Power Structures | APL v4.0</title>
+    
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/favicon.svg">
 
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Open Sans', 'sans-serif'],
-                        serif: ['Lora', 'serif'],
-                    },
-                }
-            }
-        }
-    </script>
-
-    <link rel="stylesheet" href="style.css">
-    
     <style>
-        #complicity-map {
-            width: 100%;
-            height: 80vh;
-            border: 1px solid #d1d5db; /* gray-300 */
-            background-color: #fff;
-            border-radius: 0.5rem;
+        body { font-family: 'Inter', sans-serif; background-color: #e5e7eb; color: #1f2937; }
+        .nav-link { color: #4b5563; transition: color 0.2s; }
+        .nav-link:hover { color: #111827; }
+        .nav-link.active { color: #B91C1C; font-weight: 600; }
+        
+        /* Main layout and panel styling */
+        .main-grid { display: grid; grid-template-columns: 1fr 400px; gap: 1.5rem; align-items: flex-start; }
+        #network-container { height: 85vh; border-radius: 0.5rem; background-color: #ffffff; border: 1px solid #d1d5db; transition: all 0.3s ease-in-out; }
+        #analysis-panel { height: 85vh; background-color: #fff; border: 1px solid #d1d5db; border-radius: 0.5rem; display: flex; flex-direction: column; }
+        #analysis-panel-content { padding: 1.5rem; overflow-y: auto; }
+        
+        /* Control and filter styling */
+        .control-panel { background-color: #fff; border: 1px solid #d1d5db; border-radius: 0.5rem; padding: 1rem; margin-bottom: 1.5rem; }
+        .filter-btn {
+            background-color: #fff; border: 1px solid #d1d5db; color: #374151;
+            padding: 0.5rem 1rem; border-radius: 0.375rem; font-size: 0.875rem; font-weight: 500;
+            transition: all 0.2s ease-in-out;
         }
+        .filter-btn:hover { background-color: #f9fafb; border-color: #9ca3af; }
+        .filter-btn.active { background-color: #1f2937; color: white; border-color: #1f2937; }
+
+        /* Dossier content styling within the side panel */
+        .dossier h3 { font-size: 1.25rem; font-weight: 700; color: #111827; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.5rem; margin-bottom: 1rem; }
+        .dossier p { margin-bottom: 1rem; color: #374151; line-height: 1.6; }
+        .dossier strong { color: #1f2937; }
+        .dossier .apl-link { color: #B91C1C; text-decoration: underline; text-underline-offset: 2px; font-weight: 600; }
+        
+        /* Vis.js UI customization */
+        .vis-navigation .vis-button { background-color: #fff; border: 1px solid #d1d5db; color: #374151; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        .vis-navigation .vis-button:hover { background-color: #f9fafb; }
+        
+        /* Pulse animation for selected node */
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(185, 28, 28, 0.7); }
+            50% { box-shadow: 0 0 0 12px rgba(185, 28, 28, 0); }
+        }
+        .vis-node-selected-pulsing {
+             animation: pulse 1.5s infinite;
+        }
+
     </style>
 </head>
-<body class="antialiased flex flex-col min-h-screen bg-[#F9F6F2] font-sans">
-
-    <nav class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-4">
-        <div class="flex justify-between items-center">
-            <a href="index.html" class="font-bold text-xl tracking-tight">APL</a>
-            <div class="space-x-4 sm:space-x-6">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="investigations.html" class="nav-link">Investigations</a>
-                <a href="network.html" class="nav-link active">Network</a>
+<body class="antialiased min-h-screen">
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="font-bold text-xl tracking-tight text-gray-900">APL</a>
+                <div class="space-x-8">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="investigations.html" class="nav-link">Investigations</a>
+                    <a href="network.html" class="nav-link active">Network Analysis</a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <main class="flex-grow container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        
-        <header class="text-center mb-12">
-            <h1 class="text-4xl sm:text-5xl font-bold tracking-tight font-serif">The Web of Complicity</h1>
-            <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-700">
-                Power is not abstract; it is a meticulously constructed network of finance, policy, and ideology. This interactive map exposes the relationships that link Arkansas's political and corporate elite to the machinery of Israeli apartheid. Click on a node to reveal its dossier.
+    <main class="flex-grow container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-8">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900">Network of Complicity</h1>
+            <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">
+                A strategic analysis of the power structures connecting state, corporate, financial, and ideological actors in support of Israeli apartheid.
             </p>
         </header>
 
-        <section id="network-container">
-            <div id="complicity-map"></div>
-        </section>
-
-    </main>
-    
-    <div id="node-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
-        <div class="bg-[#F9F6F2] rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-8 relative prose prose-lg">
-            <button id="modal-close" class="absolute top-4 right-4 text-gray-600 hover:text-black text-3xl font-bold">&times;</button>
-            <div id="modal-content">
-                </div>
+        <div class="control-panel">
+            <h3 class="font-medium text-gray-900 mb-3">Analysis Filters</h3>
+            <div class="flex flex-wrap gap-3">
+                <button class="filter-btn active" data-group="all">All Sectors</button>
+                <button class="filter-btn" data-group="0">State Actors</button>
+                <button class="filter-btn" data-group="1">Corporate Power</button>
+                <button class="filter-btn" data-group="2">Financial & Pension</button>
+                <button class="filter-btn" data-group="3">Ideological Apparatus</button>
+                <button class="filter-btn" data-group="4">Resistance Networks</button>
+            </div>
         </div>
-    </div>
 
-
-    <footer class="text-center text-gray-600 pt-8 pb-6">
-        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            <hr class="mb-6">
-            <p class="font-bold text-lg mb-2 font-serif">From the River to the Sea, Palestine Will Be Free.</p>
-            <p class="text-sm">
-                This project is licensed under the <a href="https://github.com/jp-dunlap/APL/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="apl-link">GNU Affero General Public License v3.0</a>.
-            </p>
-        </div>
-    </footer>
-
-    <script>
-        // --- NODE DEFINITIONS ---
-        const nodes = new vis.DataSet([
-            // GROUP 0: State Actors (Red)
-            { id: 1, label: 'S.H. Sanders', group: 0, details: "<h3>Target Profile: Governor Sarah Huckabee Sanders (R)</h3><p><strong>Ideological Alignment:</strong> Far-right, MAGA-aligned, with pronounced Christian Nationalist undertones. Her administration spearheads reactionary legislation and advances a nationalist narrative beneficial to corporate elites and the Israeli state.</p><p><strong>Key Actions:</strong> Championed the Arkansas LEARNS Act to privatize education, signed multiple corporate tax cuts, and aggressively passed anti-trans legislation as a 'culture war' distraction.</p>" },
-            { id: 2, label: 'Tom Cotton', group: 0, details: "<h3>Target Profile: Senator Tom Cotton (R)</h3><p><strong>Ideological Alignment:</strong> Aggressively interventionist, pro-Israel hardliner. A key federal voice echoing AIPAC narratives and advocating for confrontational foreign policy.</p><p><strong>Key Actions:</strong> Consistently votes for maximum military aid to Israel, a primary recipient of pro-Israel PAC funding, and a vocal opponent of the BDS movement and international law mechanisms like the ICC.</p>" },
-            { id: 3, label: 'Dennis Milligan', group: 0, details: "<h3>Target Profile: State Auditor Dennis Milligan (R)</h3><p><strong>Ideological Alignment:</strong> Right-wing financial activist, member of the State Financial Officers Foundation (SFOF) network, which combats 'woke capitalism'.</p><p><strong>Key Actions:</strong> Orchestrated a political influence campaign to pressure the Arkansas Teacher Retirement System (ATRS) into investing $50 million in Israeli state bonds, leveraging his political office to advance a geopolitical agenda.</p>" },
-            { id: 4, label: 'AR General Assembly', group: 0, details: "<h3>Target Profile: Arkansas General Assembly</h3><p><strong>Mechanism of Control:</strong> The Republican supermajority functions as a machine for enacting the ruling class agenda, rubber-stamping executive actions and passing legislation drafted by corporate lobbyists.</p><p><strong>Key Actions:</strong> Passed Act 710 to suppress Palestine solidarity, systematically cut corporate taxes, and defeated pro-labor legislation.</p>" },
-
-            // GROUP 1: Corporate Power (Blue)
-            { id: 10, label: 'Walmart', group: 1, details: "<h3>Target Profile: Walmart Inc.</h3><p><strong>Mechanism of Influence:</strong> As the world's largest retailer, its influence is multi-faceted. The Walton Family Foundation (WFF) is a primary vehicle for promoting market-based education 'reform' that undermines public schools.</p><p><strong>Complicity:</strong> The WFF funds pro-imperialist think tanks, and Walmart stores sell Israeli products like SodaStream, directly profiting from the occupation.</p>" },
-            { id: 11, label: 'Tyson Foods', group: 1, details: "<h3>Target Profile: Tyson Foods & The Poultry Cartel</h3><p><strong>Mechanism of Influence:</strong> Exerts immense pressure through targeted political contributions to maintain weak environmental regulations and suppress labor organizing.</p><p><strong>Complicity:</strong> Funnels hundreds of thousands into Arkansas congressional campaigns, particularly to figures like Senator John Boozman, ensuring legislative subservience to its corporate interests.</p>" },
-            { id: 12, label: 'Stephens Inc.', group: 1, details: "<h3>Target Profile: Stephens Inc.</h3><p><strong>Mechanism of Influence:</strong> A major privately owned financial services firm based in Little Rock, wielding significant economic and political power.</p><p><strong>Complicity:</strong> A major financial backer of key pro-Israel politicians, including Senator Tom Cotton, providing the capital that fuels the political pipeline for pro-apartheid policies.</p>" },
-            { id: 13, label: 'Lockheed Martin', group: 1, details: "<h3>Target Profile: Lockheed Martin</h3><p><strong>Mechanism of Influence:</strong> The world's largest defense contractor, with major production facilities in Camden, AR, producing HIMARS rocket systems and PAC-3 missiles.</p><p><strong>Complicity:</strong> Directly supplies the Israeli military with advanced weaponry used in its assaults on Palestine. Its products are 'combat-proven' in conflict zones, linking Arkansas's economy to global state violence.</p>" },
-            { id: 14, label: 'Teva Pharma', group: 1, details: "<h3>Target Profile: Teva Pharmaceuticals</h3><p><strong>Mechanism of Influence:</strong> An Israeli multinational pharmaceutical giant.</p><p><strong>Complicity:</strong> Systematically benefits from the occupation by exploiting a 'captive Palestinian market' under the Paris Protocol. Its inclusion on the Arkansas State Formulary creates a direct pipeline for state healthcare dollars to a corporation embedded in the structure of apartheid.</p>" },
-
-            // GROUP 2: Financial/Pension Systems (Green)
-            { id: 20, label: 'ATRS', group: 2, details: "<h3>Target Profile: Arkansas Teacher Retirement System</h3><p><strong>Mechanism of Influence:</strong> Manages ~$23 billion in pension funds for Arkansas educators.</p><p><strong>Complicity:</strong> Bowed to political pressure to invest $50 million directly in Israeli state bonds. Also holds significant investments in war-profiteering corporations like Boeing and Lockheed Martin, and tech companies like Google (Project Nimbus), via asset managers like BlackRock.</p>" },
-            { id: 21, label: 'UAMS Foundation', group: 2, details: "<h3>Target Profile: UAMS Foundation</h3><p><strong>Mechanism of Influence:</strong> Manages over $1.9 billion in assets to support the UA System, including the University of Arkansas for Medical Sciences.</p><p><strong>Complicity:</strong> Its endowment is likely invested in diversified portfolios that include major defense contractors like RTX (Raytheon) and Lockheed Martin, creating a contradiction where an institution of healing profits from war. Publicly partners with the Israel Cancer Research Fund (ICRF), lending institutional prestige to an Israeli national fund and normalizing the apartheid state.</p>" },
-
-            // GROUP 3: Lobbying/Ideological Apparatus (Purple)
-            { id: 30, label: 'AIPAC', group: 3, details: "<h3>Target Profile: American Israel Public Affairs Committee</h3><p><strong>Mechanism of Influence:</strong> A powerful national lobbying organization that architects the 'just war' narrative for Israel, framing all military actions as defensive while aggressively discrediting human rights organizations.</p><p><strong>Complicity:</strong> Provides the talking points and political pressure that are laundered through Arkansas's political and media elites.</p>" },
-            { id: 31, label: 'ADL', group: 3, details: "<h3>Target Profile: Anti-Defamation League</h3><p><strong>Mechanism of Influence:</strong> Promotes the controversial IHRA definition of antisemitism to conflate criticism of Israel with bigotry.</p><p><strong>Complicity:</strong> Its lobbying efforts provide the ideological basis for repressive legislation like Arkansas Act 710, chilling free speech and shielding the Israeli state from accountability.</p>" },
-            { id: 32, label: 'Democrat-Gazette', group: 3, details: "<h3>Target Profile: Arkansas Democrat-Gazette</h3><p><strong>Mechanism of Influence:</strong> The state's dominant newspaper, owned by WEHCO Media, with a consistently conservative, pro-business editorial stance.</p><p><strong>Complicity:</strong> Functions as a local echo chamber, uncritically amplifying pro-Israel narratives and systematically omitting Palestinian perspectives, thereby manufacturing consent for the status quo.</p>" }
-        ]);
-
-        // --- EDGE DEFINITIONS ---
-        const edges = new vis.DataSet([
-            // State -> Corporate/Financial
-            { from: 4, to: 10, label: 'Tax Cuts' }, 
-            { from: 4, to: 11, label: 'Weak Regulation' }, 
-            { from: 4, to: 14, label: 'Act 710 (Anti-BDS)' },
-            { from: 1, to: 4, label: 'Agenda Setting' }, 
-            { from: 3, to: 20, label: 'Political Pressure' }, 
-            { from: 20, to: 13, label: 'Pension Investment' }, 
-            { from: 21, to: 13, label: 'Endowment Investment' }, 
+        <div class="main-grid">
+            <section id="network-container">
+                <div id="complicity-map" class="w-full h-full"></div>
+            </section>
             
-            // Corporate/Financial -> State
-            { from: 12, to: 2, label: 'Financial Backing' },
-            { from: 11, to: 2, label: 'Campaign Donations' },
-
-            // Lobbying -> State/Media
-            { from: 30, to: 2, label: 'Talking Points' }, 
-            { from: 30, to: 1, label: 'Narrative Framing' },
-            { from: 31, to: 4, label: 'IHRA Legislation' },
-            { from: 30, to: 32, label: 'Propaganda Laundering' }, 
-        ]);
-    </script>
+            <aside id="analysis-panel">
+                <div id="analysis-panel-content" class="dossier">
+                     <h3 class="text-gray-400">Analysis Panel</h3>
+                    <p class="text-gray-500">Select a node from the network graph to view its detailed dossier and analyze its connections.</p>
+                </div>
+            </aside>
+        </div>
+    </main>
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- DOM ELEMENT SELECTION ---
             const container = document.getElementById('complicity-map');
-            const modal = document.getElementById('node-modal');
-            const modalContent = document.getElementById('modal-content');
-            const modalClose = document.getElementById('modal-close');
+            const analysisPanelContent = document.getElementById('analysis-panel-content');
+            const filterButtons = document.querySelectorAll('.filter-btn');
 
-            // --- VIS.JS NETWORK OPTIONS ---
+            // --- DATASET V4.0 ---
+            // 'details' contains dossier text. 'title' will be generated for tooltips.
+            // 'type' added to edges for color-coding.
+            const rawNodes = [
+                {id: 1, label: 'S.H.\nSanders', group: 0, details: "<h3>Governor Sarah Huckabee Sanders</h3><p>Acts as the primary enforcer of the state's reactionary agenda, championing legislation like the LEARNS Act to privatize education and signing multiple corporate tax cuts.</p><p><a href='investigation-state-apparatus.html' class='apl-link' target='_blank'>View Full Dossier &rarr;</a></p>"},
+                {id: 2, label: 'Tom\nCotton', group: 0, details: "<h3>Senator Tom Cotton</h3><p>An aggressively interventionist, pro-Israel hardliner at the federal level. A key recipient of AIPAC funding and a vocal opponent of international law mechanisms aimed at holding Israel accountable.</p><p><a href='investigation-propaganda-pipeline.html' class='apl-link' target='_blank'>View Full Dossier &rarr;</a></p>"},
+                {id: 4, label: 'AR\nAssembly', group: 0, details: "<h3>Arkansas General Assembly</h3><p>The Republican supermajority functions as a rubber stamp for the corporate agenda, passing legislation like Act 710 to suppress Palestine solidarity and systematically cutting taxes.</p><p><a href='investigation-state-apparatus.html' class='apl-link' target='_blank'>View Full Dossier &rarr;</a></p>"},
+                {id: 7, label: 'AEDC', group: 0, details: "<h3>AR Economic Development Commission</h3><p>A quasi-governmental entity that provides subsidies, tax breaks, and incentives to corporations, particularly defense contractors like Lockheed Martin, to operate in Arkansas.</p>"},
+                {id: 10, label: 'Walmart', group: 1, details: "<h3>Walmart Inc.</h3><p>The Walton Family Foundation, its philanthropic arm, promotes market-based education 'reform' and funds pro-imperialist think tanks. Stores sell Israeli products like SodaStream.</p><p><a href='investigation-corporate-nexus.html' class='apl-link' target='_blank'>View Full Dossier &rarr;</a></p>"},
+                {id: 12, label: 'Stephens\nInc.', group: 1, details: "<h3>Stephens Inc.</h3><p>A major private financial firm and key political donor, providing significant financial backing to pro-Israel politicians like Tom Cotton.</p><p><a href='investigation-corporate-nexus.html' class='apl-link' target='_blank'>View Full Dossier &rarr;</a></p>"},
+                {id: 13, label: 'Lockheed\nMartin', group: 1, details: "<h3>Lockheed Martin</h3><p>The world's largest defense contractor with major production facilities in Camden, AR. Directly supplies the Israeli military with advanced weaponry, linking the state's economy to global state violence.</p><p><a href='investigation-military-police-nexus.html' class='apl-link' target='_blank'>View Full Dossier &rarr;</a></p>"},
+                {id: 20, label: 'ATRS', group: 2, details: "<h3>Arkansas Teacher Retirement System</h3><p>Manages ~$23 billion in public pension funds. Invested $50M in Israeli bonds and holds shares in numerous war-profiteering corporations via asset managers.</p><p><a href='investigation-atrs-bonds.html' class='apl-link' target='_blank'>View Full Dossier &rarr;</a></p>"},
+                {id: 22, label: 'BlackRock', group: 2, details: "<h3>BlackRock</h3><p>One of the world's largest asset managers. Manages a significant portion of ATRS funds and is a top institutional holder of major defense contractors like RTX and Lockheed Martin.</p>"},
+                {id: 30, label: 'AIPAC', group: 3, details: "<h3>AIPAC</h3><p>The primary pro-Israel lobbying force in the U.S., providing funding, talking points, and political pressure that are laundered through Arkansas's political and media elites.</p><p><a href='investigation-propaganda-pipeline.html' class='apl-link' target='_blank'>View Full Dossier &rarr;</a></p>"},
+                {id: 40, label: 'AR Lib.\nCollective', group: 4, details: "<h3>Arkansas Liberation Collective</h3><p>A grassroots organization engaged in direct action, political education, and counter-protests against complicit institutions.</p>"}
+            ];
+
+            const rawEdges = [
+                {from: 4, to: 10, type: 'political'}, {from: 7, to: 13, type: 'financial'}, 
+                {from: 1, to: 4, type: 'political'}, {from: 20, to: 22, type: 'financial'}, 
+                {from: 22, to: 13, type: 'financial'}, {from: 12, to: 2, type: 'financial'}, 
+                {from: 30, to: 2, type: 'ideological'}, {from: 30, to: 1, type: 'ideological'},
+                {from: 40, to: 30, type: 'resistance'}, {from: 40, to: 4, type: 'resistance'}
+            ];
+
+            // --- DATA ENRICHMENT ---
+            const connectionCount = {};
+            rawEdges.forEach(e => { connectionCount[e.from] = (connectionCount[e.from] || 0) + 1; connectionCount[e.to] = (connectionCount[e.to] || 0) + 1; });
+            
+            const groupNames = { 0: 'State Actor', 1: 'Corporate Power', 2: 'Financial/Pension', 3: 'Ideological Apparatus', 4: 'Resistance Network' };
+            const edgeColors = { political: '#3b82f6', financial: '#16a34a', ideological: '#8b5cf6', resistance: '#ef4444' };
+
+            const nodesWithData = rawNodes.map(n => {
+                const conns = connectionCount[n.id] || 0;
+                n.value = conns;
+                n.title = `
+                    <div style="padding: 8px; font-family: Inter, sans-serif;">
+                        <h4 style="font-weight: 700; font-size: 1rem; margin: 0 0 4px 0;">${n.label.replace('\n',' ')}</h4>
+                        <p style="margin: 0 0 4px 0; color: #6b7280;">${groupNames[n.group]}</p>
+                        <p style="margin: 0;">Connections: <strong>${conns}</strong></p>
+                    </div>`;
+                return n;
+            });
+
+            const edgesWithColors = rawEdges.map(e => {
+                e.color = edgeColors[e.type] || '#9ca3af';
+                return e;
+            });
+            
+            const nodes = new vis.DataSet(nodesWithData);
+            const edges = new vis.DataSet(edgesWithColors);
+
+            // --- VIS.JS OPTIONS ---
             const options = {
-                autoResize: true,
-                height: '100%',
-                width: '100%',
                 nodes: {
                     shape: 'dot',
-                    size: 25,
-                    font: {
-                        size: 18,
-                        color: '#1C1D21',
-                        face: 'Open Sans'
-                    },
+                    scaling: { min: 20, max: 50 },
+                    font: { size: 14, face: 'Inter', color: '#1f2937', multi: true, strokeWidth: 4, strokeColor: 'rgba(255,255,255,0.8)' },
                     borderWidth: 2,
-                    shadow: true,
                 },
                 edges: {
                     width: 2,
-                    color: {
-                        color: '#6b7280',
-                        highlight: '#B91C1C',
-                        hover: '#B91C1C'
-                    },
-                    arrows: {
-                        to: { enabled: true, scaleFactor: 0.7 }
-                    },
-                    font: {
-                        size: 12,
-                        color: '#374151',
-                        strokeWidth: 0
-                    },
-                    smooth: {
-                        enabled: true,
-                        type: 'dynamic'
-                    }
+                    arrows: { to: { enabled: true, scaleFactor: 0.6 } },
+                    smooth: { type: 'continuous' }
                 },
                 groups: {
-                    0: { color: { background: '#B91C1C', border: '#8C1C1C' }, font: {color: 'white'} },
-                    1: { color: { background: '#3b82f6', border: '#1d4ed8' }, font: {color: 'white'} },
-                    2: { color: { background: '#16a34a', border: '#15803d' }, font: {color: 'white'} },
-                    3: { color: { background: '#6d28d9', border: '#5b21b6' }, font: {color: 'white'} }
+                    0: { color: { border: '#991b1b', background: '#fecaca' }, font: { color: '#991b1b' } },
+                    1: { color: { border: '#1d4ed8', background: '#dbeafe' }, font: { color: '#1e40af' } },
+                    2: { color: { border: '#15803d', background: '#d1fae5' }, font: { color: '#14532d' } },
+                    3: { color: { border: '#5b21b6', background: '#ede9fe' }, font: { color: '#4c1d95' } },
+                    4: { color: { border: '#b45309', background: '#fef3c7' }, font: { color: '#78350f' } },
                 },
                 physics: {
-                    barnesHut: {
-                        gravitationalConstant: -20000,
-                        centralGravity: 0.1,
-                        springLength: 200,
-                        springConstant: 0.05,
-                        damping: 0.3
-                    },
+                    barnesHut: { gravitationalConstant: -60000, centralGravity: 0.2, springLength: 250, damping: 0.3 },
                     solver: 'barnesHut',
-                    stabilization: {
-                        iterations: 2500
-                    }
                 },
-                interaction: {
-                    hover: true,
-                    tooltipDelay: 200
+                interaction: { navigationButtons: true, keyboard: true, hover: true, tooltipDelay: 100 },
+            };
+            const network = new vis.Network(container, { nodes, edges }, options);
+
+            // --- INTERACTION LOGIC ---
+            let activeNodeId = null;
+
+            const selectNode = (nodeId) => {
+                if (activeNodeId) {
+                    nodes.update({ id: activeNodeId, borderWidth: 2, shadow: false });
                 }
+                activeNodeId = nodeId;
+                const nodeData = nodes.get(nodeId);
+                nodes.update({ id: nodeId, borderWidth: 4, shadow: { enabled: true, color: 'rgba(185, 28, 28, 0.5)', size: 20, x: 0, y: 0 } });
+                analysisPanelContent.innerHTML = nodeData.details;
+                network.focus(nodeId, { scale: 1.2, animation: { duration: 500, easingFunction: 'easeInOutQuad' } });
             };
 
-            // --- DATA INITIALIZATION ---
-            const data = {
-                nodes: nodes,
-                edges: edges,
-            };
-
-            // --- NETWORK CREATION ---
-            const network = new vis.Network(container, data, options);
-
-            // --- EVENT LISTENERS ---
-            network.on('click', (properties) => {
-                const { nodes } = properties;
-                if (nodes.length > 0) {
-                    const nodeId = nodes[0];
-                    const nodeData = data.nodes.get(nodeId);
-                    
-                    if (nodeData && nodeData.details) {
-                        modalContent.innerHTML = nodeData.details;
-                        modal.classList.remove('hidden');
-                    }
-                }
-            });
-
-            modalClose.addEventListener('click', () => {
-                modal.classList.add('hidden');
-                modalContent.innerHTML = '';
-            });
-
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
-                    modal.classList.add('hidden');
-                    modalContent.innerHTML = '';
-                }
-            });
+            network.on('click', p => p.nodes.length > 0 && selectNode(p.nodes[0]));
             
-            modal.addEventListener('click', (event) => {
-                if (event.target === modal) {
-                    modal.classList.add('hidden');
-                    modalContent.innerHTML = '';
-                }
+            filterButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+                    const group = e.target.dataset.group;
+                    const view = new vis.DataView(nodes, { filter: item => group === 'all' || item.group == group });
+                    network.setData({ nodes: view, edges: edges });
+                });
             });
-
-            console.log("APL Network Visualization Initialized. The web of complicity is now exposed.");
         });
     </script>
 </body>
