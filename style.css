@@ -1,17 +1,15 @@
 /*
     APL | Arkansas Palestine Liberation
-    Stylesheet v1.2
-    Aesthetic: "Truth in Plain Sight"
+    Stylesheet v2.0
+    Aesthetic: "Truth in Plain Sight" (Recalibrated)
 */
 
 /* CORE PALETTE & TYPOGRAPHY
-    This section defines the fundamental visual identity of the project.
-    The choices are minimalist and deliberate, designed to convey authority,
-    clarity, and moral seriousness.
+    Updated to a stark, high-contrast, document-like palette.
 */
 body {
-    background-color: #F9F6F2;
-    color: #1C1D21;
+    background-color: #f8f9fa; /* Light grey background */
+    color: #212529; /* Dark grey text for readability */
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -21,16 +19,23 @@ h1, h2, h3, h4, h5, h6 {
 
 /* --- NAVIGATION STYLING --- */
 .nav-link {
-    @apply text-gray-800 hover:text-[#B91C1C] transition-colors duration-200 text-base sm:text-lg pb-1;
+    @apply text-gray-700 hover:text-[#B91C1C] transition-colors duration-200 text-base sm:text-lg pb-1;
 }
 
+/* The 'active' state is simplified in the new design. 
+   This class is no longer given a special border. */
 .nav-link.active {
-    @apply text-[#B91C1C] font-bold border-b-2 border-[#B91C1C];
+    @apply text-gray-900 font-bold; 
 }
 
 /* --- CASE FILE CARD STYLING --- */
 .case-file-card {
-    @apply block border border-gray-300 p-6 rounded-lg hover:shadow-lg hover:border-[#B91C1C] transition-all duration-300 flex flex-col justify-between;
+    @apply block border border-gray-300 bg-white p-6 rounded-lg hover:shadow-lg hover:border-[#B91C1C] transition-all duration-300 flex flex-col justify-between;
+}
+
+/* --- BUTTON STYLING --- */
+.apl-button {
+    @apply inline-block bg-[#B91C1C] text-white font-bold py-3 px-8 rounded-md hover:bg-[#8C1C1C] transition-colors duration-300;
 }
 
 
@@ -58,7 +63,6 @@ details[open] > summary::before {
 
 /* WEAPONIZED LINK STYLING */
 .apl-link {
-    /* Deep red from the Palestinian flag. Represents blood, sacrifice, revolution. */
     color: #B91C1C;
     text-decoration: underline;
     text-underline-offset: 4px;
@@ -67,4 +71,9 @@ details[open] > summary::before {
 
 .apl-link:hover {
     color: #8C1C1C; 
+}
+
+/* FOOTER STYLING */
+footer hr {
+    border-color: #dee2e6; /* A light grey for the separator */
 }
