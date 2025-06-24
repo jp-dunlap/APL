@@ -15,8 +15,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        @keyframes slow-pan {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+        #background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -10;
+            background-image: url('https://images.unsplash.com/photo-1593941707882-6e7a93510a23?q=80&w=2574&auto=format&fit=crop');
+            background-size: cover;
+            opacity: 0.04;
+            filter: grayscale(100%) invert(1);
+            animation: slow-pan 120s linear infinite alternate;
+        }
+    </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
+
+    <div id="background-overlay"></div>
 
     <nav class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-4">
         <div class="flex justify-between items-center">
