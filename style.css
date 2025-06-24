@@ -83,20 +83,6 @@ h1, h2, h3, h4, h5, h6 {
     50% { border-color: black; }
 }
 
-/* --- REDACTED TEXT STYLING (NEW) --- */
-.redacted {
-    background-color: #000;
-    color: #000;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-    padding: 0 0.2em;
-    border-radius: 2px;
-}
-.redacted:hover {
-    background-color: transparent;
-    color: #B91C1C; /* Reveal text in weaponized red */
-}
-
 
 /* UTILITY & INTERACTIVE ELEMENT STYLING */
 details > summary {
