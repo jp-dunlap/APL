@@ -1,7 +1,11 @@
 /*
     APL | Arkansas Palestine Liberation
-    Stylesheet v2.2
+    Stylesheet v2.4
     Aesthetic: "Truth in Plain Sight" (CDN Compatible)
+    ---
+    CHANGE LOG (v2.4):
+    - ADDED: `.redacted` class and hover state to create a
+      "leaked document" text effect.
 */
 
 body {
@@ -29,7 +33,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700; /* bold */
 }
 
-/* --- CASE FILE CARD STYLING --- */
+/* --- CASE FILE CARD STYLING (MODIFIED) --- */
 .case-file-card {
     display: block;
     border-width: 1px;
@@ -40,11 +44,13 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out; /* Adjusted timing for responsiveness */
 }
 .case-file-card:hover {
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    border-width: 2px; /* Increased border width */
     border-color: #B91C1C;
+    transform: translateY(-4px); /* Added 'lift' effect */
 }
 
 /* --- REFINED BUTTON STYLING --- */
@@ -62,6 +68,35 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #B91C1C;
     color: #ffffff;
 }
+
+/* --- MODAL & TERMINAL ANIMATION STYLES --- */
+.terminal-header {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid black;
+    animation: blinking-cursor 0.75s step-end infinite;
+}
+
+@keyframes blinking-cursor {
+    from, to { border-color: transparent }
+    50% { border-color: black; }
+}
+
+/* --- REDACTED TEXT STYLING (NEW) --- */
+.redacted {
+    background-color: #000;
+    color: #000;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    padding: 0 0.2em;
+    border-radius: 2px;
+}
+.redacted:hover {
+    background-color: transparent;
+    color: #B91C1C; /* Reveal text in weaponized red */
+}
+
 
 /* UTILITY & INTERACTIVE ELEMENT STYLING */
 details > summary {
