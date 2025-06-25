@@ -2,7 +2,7 @@
     APL | Arkansas Palestine Liberation
     Script File: investigations-script.js
     Description: This script controls the modal functionality for the
-                 investigations.html page. It fetches and displays dossier
+                 investigations.html page. It fetches and displays report
                  content dynamically, creating an interactive intelligence hub.
 */
 
@@ -11,20 +11,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('dossier-modal');
     const modalContent = document.getElementById('modal-content');
     const modalClose = document.getElementById('modal-close');
-    const caseFileCards = document.querySelectorAll('.case-file-card');
+    const reportCards = document.querySelectorAll('.report-card');
 
-    // --- FUNCTION TO FETCH AND DISPLAY DOSSIER ---
-    const showDossier = async (dossierPath) => {
-        if (!dossierPath) return;
+    // --- FUNCTION TO FETCH AND DISPLAY REPORT ---
+    const showReport = async (reportPath) => {
+        if (!reportPath) return;
 
         try {
             // Initial state: Show loading message and display the modal
-            modalContent.innerHTML = '<p class="text-center text-lg p-8 font-serif">Accessing secure file...</p>';
+            modalContent.innerHTML = '<p class="text-center text-lg p-8 font-serif">Accessing file...</p>';
             document.body.style.overflow = 'hidden'; 
             modal.classList.remove('hidden');
 
             // Fetch the external report HTML
-            const response = await fetch(dossierPath);
+            const response = await fetch(reportPath);
             if (!response.ok) {
                 throw new Error(`Network response was not ok. Status: ${response.status}`);
             }
@@ -36,15 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Isolate the main content container from the fetched file
             const allContainers = doc.querySelectorAll('.container');
-            // The main content is typically the second container in the report files.
-            const dossierBody = allContainers.length > 1 ? allContainers[1] : allContainers[0];
+            const reportBody = allContainers.length > 1 ? allContainers[1] : allContainers[0];
 
-            if (dossierBody) {
-                // MODIFICATION: Instead of injecting raw HTML, create a wrapper
-                // div with the .report-body class to constrain the width.
+            if (reportBody) {
+                // Create a wrapper div with the .report-body class to constrain the width.
                 const contentWrapper = document.createElement('div');
-                contentWrapper.className = 'report-body'; // Apply the new CSS class
-                contentWrapper.innerHTML = dossierBody.innerHTML;
+                contentWrapper.className = 'report-body'; // Apply the CSS class for readability
+                contentWrapper.innerHTML = reportBody.innerHTML;
 
                 // Clear the loading message and append the new, styled content
                 modalContent.innerHTML = ''; 
@@ -61,16 +59,16 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- EVENT LISTENERS ---
-    caseFileCards.forEach(card => {
+    reportCards.forEach(card => {
         card.addEventListener('click', () => {
-            const dossierPath = card.dataset.dossier;
-            showDossier(dossierPath);
+            const reportPath = card.dataset.report;
+            showReport(reportPath);
         });
         card.addEventListener('keydown', (event) => {
             if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault();
-                const dossierPath = card.dataset.dossier;
-                showDossier(dossierPath);
+                const reportPath = card.dataset.report;
+                showReport(reportPath);
             }
         });
     });
@@ -97,5 +95,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    console.log("APL Report Terminal is active. Awaiting target selection.");
+    console.log("APL Report Terminal is active. Awaiting selection.");
 });
