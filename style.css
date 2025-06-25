@@ -39,7 +39,7 @@ h1, h2, h3, h4, h5, h6 {
     border-width: 1px;
     border-color: #d1d5db; /* gray-300 */
     background-color: #ffffff;
-    padding: 1.5rem;
+    padding: 2rem;
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -81,6 +81,20 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes blinking-cursor {
     from, to { border-color: transparent }
     50% { border-color: black; }
+}
+
+/* --- REDACTED TEXT STYLING (NEW) --- */
+.redacted {
+    background-color: #000;
+    color: #000;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    padding: 0 0.2em;
+    border-radius: 2px;
+}
+.redacted:hover {
+    background-color: transparent;
+    color: #B91C1C; /* Reveal text in weaponized red */
 }
 
 
