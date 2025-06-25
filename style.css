@@ -1,11 +1,11 @@
 /*
     APL | Arkansas Palestine Liberation
-    Stylesheet v2.4
+    Stylesheet v2.5
     Aesthetic: "Truth in Plain Sight" (CDN Compatible)
     ---
-    CHANGE LOG (v2.4):
-    - ADDED: `.redacted` class and hover state to create a
-      "leaked document" text effect.
+    CHANGE LOG (v2.5):
+    - ADDED: .report-body class to constrain line width for
+      journalistic readability.
 */
 
 body {
@@ -69,7 +69,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #ffffff;
 }
 
-/* --- MODAL & TERMINAL ANIMATION STYLES --- */
+/* --- REPORT & MODAL STYLES --- */
 .terminal-header {
     display: inline-block;
     white-space: nowrap;
@@ -83,18 +83,11 @@ h1, h2, h3, h4, h5, h6 {
     50% { border-color: black; }
 }
 
-/* --- REDACTED TEXT STYLING (NEW) --- */
-.redacted {
-    background-color: #000;
-    color: #000;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-    padding: 0 0.2em;
-    border-radius: 2px;
-}
-.redacted:hover {
-    background-color: transparent;
-    color: #B91C1C; /* Reveal text in weaponized red */
+/* NEW: This class constrains the text in reports for optimal readability */
+.report-body {
+    max-width: 48rem; /* Equivalent to Tailwind's max-w-3xl */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
