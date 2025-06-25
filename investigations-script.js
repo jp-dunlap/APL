@@ -18,37 +18,45 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!dossierPath) return;
 
         try {
+            // Initial state: Show loading message and display the modal
             modalContent.innerHTML = '<p class="text-center text-lg p-8 font-serif">Accessing secure file...</p>';
             document.body.style.overflow = 'hidden'; 
             modal.classList.remove('hidden');
 
+            // Fetch the external report HTML
             const response = await fetch(dossierPath);
             if (!response.ok) {
                 throw new Error(`Network response was not ok. Status: ${response.status}`);
             }
             const html = await response.text();
 
+            // Parse the fetched HTML into a document object
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
             
-            // --- BUG FIX ---
-            // Original line was: const dossierBody = doc.querySelector('.container');
-            // This was too generic. The corrected logic below specifically targets the main content container.
+            // Isolate the main content container from the fetched file
             const allContainers = doc.querySelectorAll('.container');
-            // The main content is always the second container in the dossier files.
-            // This check makes the code resilient.
+            // The main content is typically the second container in the report files.
             const dossierBody = allContainers.length > 1 ? allContainers[1] : allContainers[0];
 
-
             if (dossierBody) {
-                modalContent.innerHTML = dossierBody.innerHTML;
+                // MODIFICATION: Instead of injecting raw HTML, create a wrapper
+                // div with the .report-body class to constrain the width.
+                const contentWrapper = document.createElement('div');
+                contentWrapper.className = 'report-body'; // Apply the new CSS class
+                contentWrapper.innerHTML = dossierBody.innerHTML;
+
+                // Clear the loading message and append the new, styled content
+                modalContent.innerHTML = ''; 
+                modalContent.appendChild(contentWrapper);
+
             } else {
-                throw new Error("Could not find the main '.container' in the fetched dossier file.");
+                throw new Error("Could not find the main '.container' in the fetched report file.");
             }
             
         } catch (error) {
-            console.error('Failed to fetch dossier:', error);
-            modalContent.innerHTML = `<div class="p-8 text-center"><h3 class="font-serif text-2xl text-[#B91C1C] mb-4">Access Denied</h3><p class="text-lg">Error: Could not load dossier. The file may be missing or the connection was interrupted. Please try again.</p></div>`;
+            console.error('Failed to fetch report:', error);
+            modalContent.innerHTML = `<div class="p-8 text-center"><h3 class="font-serif text-2xl text-[#B91C1C] mb-4">Access Denied</h3><p class="text-lg">Error: Could not load report. The file may be missing or the connection was interrupted. Please try again.</p></div>`;
         }
     };
 
@@ -67,10 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- MODAL CLOSE FUNCTIONALITY ---
     const closeModal = () => {
         modal.classList.add('hidden');
-        document.body.style.overflow = 'auto';
-        modalContent.innerHTML = '';
+        document.body.style.overflow = 'auto'; // Restore background scrolling
+        modalContent.innerHTML = ''; // Clear content to free up memory
     };
 
     modalClose.addEventListener('click', closeModal);
@@ -81,11 +90,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Close modal if user clicks on the background overlay
     modal.addEventListener('click', (event) => {
         if (event.target === modal) {
             closeModal();
         }
     });
     
-    console.log("APL Dossier Terminal is active. Awaiting target selection.");
+    console.log("APL Report Terminal is active. Awaiting target selection.");
 });
