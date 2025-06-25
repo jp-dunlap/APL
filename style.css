@@ -1,11 +1,11 @@
 /*
     APL | Arkansas Palestine Liberation
-    Stylesheet v2.5
+    Stylesheet v2.6
     Aesthetic: "Truth in Plain Sight" (CDN Compatible)
     ---
-    CHANGE LOG (v2.5):
-    - ADDED: .report-body class to constrain line width for
-      journalistic readability.
+    CHANGE LOG (v2.6):
+    - ADDED: .pull-quote class for journalistic emphasis on
+      key evidence.
 */
 
 body {
@@ -83,11 +83,32 @@ h1, h2, h3, h4, h5, h6 {
     50% { border-color: black; }
 }
 
-/* NEW: This class constrains the text in reports for optimal readability */
 .report-body {
     max-width: 48rem; /* Equivalent to Tailwind's max-w-3xl */
     margin-left: auto;
     margin-right: auto;
+}
+
+/* NEW: Journalistic pull quote styling */
+.pull-quote {
+    padding: 1rem 1.5rem;
+    margin: 2.5rem auto;
+    border-left: 4px solid #B91C1C;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    color: #374151; /* gray-700 */
+}
+
+.pull-quote cite {
+    display: block;
+    text-align: right;
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-style: normal;
+    font-family: 'Open Sans', sans-serif;
+    color: #6b7280; /* gray-500 */
 }
 
 
