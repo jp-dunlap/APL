@@ -27,7 +27,6 @@
         }
     </script>
 
-    <!-- The original stylesheet link, preserved to maintain all styles -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="antialiased flex flex-col min-h-screen bg-[#F9F6F2] font-sans">
@@ -77,7 +76,6 @@
                     </div>
                 </div>
 
-                <!-- NEW REPORT CARD INSERTED HERE -->
                 <div class="report-card" data-report="investigation-influence-industry.html" role="button" tabindex="0">
                     <div>
                         <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Report: The Influence Industry</p>
@@ -132,7 +130,7 @@
                         <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
                     </div>
                 </div>
-
+                
                 <div class="report-card" data-report="investigation-atrs-bonds.html" role="button" tabindex="0">
                     <div>
                         <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Report: Financial Complicity</p>
@@ -140,6 +138,17 @@
                         <p class="mt-3 text-gray-800">A deep-dive into the Arkansas Teacher Retirement System (ATRS), revealing how public pension funds are invested in corporations that arm, supply, and sustain Israeli apartheid.</p>
                     </div>
                      <div class="mt-6">
+                        <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
+                    </div>
+                </div>
+                
+                <div class="report-card" data-report="investigation-treasurer-bonds.html" role="button" tabindex="0">
+                    <div>
+                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Report: Financial Complicity</p>
+                        <h3 class="text-2xl font-bold mt-2 font-serif">The Treasurer's War Chest</h3>
+                        <p class="mt-3 text-gray-800">An analysis of the Arkansas State Treasurer's Office, exposing the direct management of a $52 million Israel Bond portfolio in defiance of fiduciary duty and documented financial risks.</p>
+                    </div>
+                    <div class="mt-6">
                         <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
                     </div>
                 </div>
@@ -279,8 +288,7 @@
                 <button id="modal-close" class="text-gray-600 hover:text-black text-4xl font-bold">&times;</button>
             </header>
             <div id="modal-content" class="overflow-y-auto p-2 sm:p-4 md:p-6">
-                <!-- Dossier content will be injected by investigations-script.js -->
-            </div>
+                </div>
         </div>
     </div>
 
@@ -293,10 +301,6 @@
         </div>
     </footer>
 
-    <!-- The operational script will be loaded separately -->
-    <!-- Note: Original script tags for flowbite.js and script.js have been intentionally omitted
-         as per the user directive to provide a pure HTML structure first. The new
-         investigations-script.js will be provided next. -->
-<script src="investigations-script.js"></script>
+    <script src="investigations-script.js"></script>
 </body>
 </html>
