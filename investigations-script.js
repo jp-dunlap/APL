@@ -1,20 +1,52 @@
 /*
     APL | Arkansas Palestine Liberation
-    Script File: investigations-script.js
-    Description: This script controls the modal functionality for the
-                 investigations.html page. It fetches and displays report
-                 content dynamically, creating an interactive intelligence hub.
+    Script File: investigations-script.js (v2.0 - Dynamic)
+    Description: This script builds the investigations page dynamically
+                 by fetching data from targets.json. It creates the report
+                 cards and manages the modal functionality for displaying
+                 the full, detailed reports.
 */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // --- CONFIGURATION ---
+    const dataUrl = 'targets.json'; // The central intelligence data file
+
     // --- DOM ELEMENT SELECTION ---
     const modal = document.getElementById('dossier-modal');
     const modalContent = document.getElementById('modal-content');
     const modalClose = document.getElementById('modal-close');
-    const reportCards = document.querySelectorAll('.report-card');
+    const adversaryGrid = document.getElementById('adversary-ledger-grid');
+    
+    /**
+     * Creates the HTML for a single report card.
+     * @param {object} report - The report data object from targets.json.
+     * @returns {HTMLElement} - The fully constructed card element.
+     */
+    const createReportCard = (report) => {
+        const card = document.createElement('div');
+        card.className = 'report-card';
+        card.dataset.report = report.report_file; // Link to the full HTML report
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
 
-    // --- FUNCTION TO FETCH AND DISPLAY REPORT ---
-    const showReport = async (reportPath) => {
+        card.innerHTML = `
+            <div>
+                <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">${report.subtitle}</p>
+                <h3 class="text-2xl font-bold mt-2 font-serif">${report.title}</h3>
+                <p class="mt-3 text-gray-800">${report.description}</p>
+            </div>
+            <div class="mt-6">
+                <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
+            </div>
+        `;
+        return card;
+    };
+
+    /**
+     * Fetches the full HTML of a report and displays it in the modal.
+     * @param {string} reportPath - The path to the report's HTML file.
+     */
+    const showReportModal = async (reportPath) => {
         if (!reportPath) return;
 
         try {
@@ -30,70 +62,94 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             const html = await response.text();
 
-            // Parse the fetched HTML into a document object
+            // Parse the fetched HTML and isolate the main content container
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
-            
-            // Isolate the main content container from the fetched file
-            const allContainers = doc.querySelectorAll('.container');
-            const reportBody = allContainers.length > 1 ? allContainers[1] : allContainers[0];
+            const reportBody = doc.querySelector('.container'); // Simplified selector
 
             if (reportBody) {
-                // Create a wrapper div with the .report-body class to constrain the width.
                 const contentWrapper = document.createElement('div');
-                contentWrapper.className = 'report-body'; // Apply the CSS class for readability
+                contentWrapper.className = 'report-body';
                 contentWrapper.innerHTML = reportBody.innerHTML;
-
-                // Clear the loading message and append the new, styled content
                 modalContent.innerHTML = ''; 
                 modalContent.appendChild(contentWrapper);
-
             } else {
-                throw new Error("Could not find the main '.container' in the fetched report file.");
+                throw new Error("Could not find the main content in the fetched report file.");
             }
             
         } catch (error) {
             console.error('Failed to fetch report:', error);
-            modalContent.innerHTML = `<div class="p-8 text-center"><h3 class="font-serif text-2xl text-[#B91C1C] mb-4">Access Denied</h3><p class="text-lg">Error: Could not load report. The file may be missing or the connection was interrupted. Please try again.</p></div>`;
+            modalContent.innerHTML = `<div class="p-8 text-center"><h3 class="font-serif text-2xl text-[#B91C1C] mb-4">Access Denied</h3><p class="text-lg">Error: Could not load report. The file may be missing or the connection was interrupted.</p></div>`;
         }
     };
 
-    // --- EVENT LISTENERS ---
-    reportCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const reportPath = card.dataset.report;
-            showReport(reportPath);
-        });
-        card.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                const reportPath = card.dataset.report;
-                showReport(reportPath);
+    /**
+     * Main function to initialize the page. Fetches data and builds the UI.
+     */
+    const initializePage = async () => {
+        try {
+            const response = await fetch(dataUrl);
+            if (!response.ok) {
+                throw new Error(`Failed to load intelligence file: ${response.statusText}`);
             }
+            const reports = await response.json();
+
+            // Clear any placeholder content
+            adversaryGrid.innerHTML = '';
+
+            // Create and append a card for each report
+            reports.forEach(report => {
+                if (report.category === 'Adversary Ledger') {
+                    const card = createReportCard(report);
+                    adversaryGrid.appendChild(card);
+                }
+                // TODO: Add logic for other categories like "Mapping Solidarity"
+            });
+
+            // Add event listeners to the newly created cards
+            attachCardListeners();
+
+        } catch (error) {
+            console.error(error);
+            adversaryGrid.innerHTML = `<p class="text-center text-red-700 col-span-full">Error: Could not load the intelligence ledger. The network may be compromised.</p>`;
+        }
+    };
+
+    /**
+     * Attaches click and keyboard event listeners to all report cards.
+     */
+    const attachCardListeners = () => {
+        const reportCards = document.querySelectorAll('.report-card');
+        reportCards.forEach(card => {
+            const reportPath = card.dataset.report;
+            card.addEventListener('click', () => showReportModal(reportPath));
+            card.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    showReportModal(reportPath);
+                }
+            });
         });
-    });
+    };
 
     // --- MODAL CLOSE FUNCTIONALITY ---
     const closeModal = () => {
         modal.classList.add('hidden');
-        document.body.style.overflow = 'auto'; // Restore background scrolling
-        modalContent.innerHTML = ''; // Clear content to free up memory
+        document.body.style.overflow = 'auto';
+        modalContent.innerHTML = '';
     };
 
     modalClose.addEventListener('click', closeModal);
-
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) closeModal();
+    });
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
             closeModal();
         }
     });
-
-    // Close modal if user clicks on the background overlay
-    modal.addEventListener('click', (event) => {
-        if (event.target === modal) {
-            closeModal();
-        }
-    });
     
-    console.log("APL Report Terminal is active. Awaiting selection.");
+    // --- INITIALIZE ---
+    console.log("APL Report Terminal v2.0 is active. Initializing dynamic intelligence ledger.");
+    initializePage();
 });
