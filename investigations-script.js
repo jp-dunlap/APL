@@ -14,39 +14,17 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- CONFIGURATION ---
-    const dataUrl = 'targets.json'; // The central intelligence data file
+    // The dataUrl is a placeholder. The current investigations.html uses static cards.
+    // This script will attach listeners to those static cards. If you wish to
+    // load data dynamically, create a 'targets.json' file.
+    const dataUrl = 'targets.json'; 
 
     // --- DOM ELEMENT SELECTION ---
     const modal = document.getElementById('dossier-modal');
     const modalContent = document.getElementById('modal-content');
     const modalClose = document.getElementById('modal-close');
-    const adversaryGrid = document.getElementById('adversary-ledger-grid');
+    const adversaryGrid = document.getElementById('adversary-ledger-grid'); // This ID is assumed from the HTML structure
     
-    /**
-     * Creates the HTML for a single report card.
-     * @param {object} report - The report data object from targets.json.
-     * @returns {HTMLElement} - The fully constructed card element.
-     */
-    const createReportCard = (report) => {
-        const card = document.createElement('div');
-        card.className = 'report-card';
-        card.dataset.report = report.report_file; // Link to the full HTML report
-        card.setAttribute('role', 'button');
-        card.setAttribute('tabindex', '0');
-
-        card.innerHTML = `
-            <div>
-                <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">${report.subtitle}</p>
-                <h3 class="text-2xl font-bold mt-2 font-serif">${report.title}</h3>
-                <p class="mt-3 text-gray-800">${report.description}</p>
-            </div>
-            <div class="mt-6">
-                <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
-            </div>
-        `;
-        return card;
-    };
-
     /**
      * Fetches the full HTML of a report and displays it in the modal.
      * @param {string} reportPath - The path to the report's HTML file.
@@ -71,10 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
             
-            // --- FIX ---
-            // The original script correctly identified that the report files have multiple
-            // containers. The first is the nav, the second is the main content.
-            // This logic correctly targets the main content container.
+            // --- CORE LOGIC ---
+            // The report files have a consistent structure: the first element with class="container"
+            // is the navigation bar, and the second is the main content body. This selector
+            // precisely targets and extracts only the main content to display in the modal.
             const allContainers = doc.querySelectorAll('.container');
             const reportBody = allContainers.length > 1 ? allContainers[1] : allContainers[0];
 
@@ -95,54 +73,22 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     /**
-     * Main function to initialize the page. Fetches data and builds the UI.
-     */
-    const initializePage = async () => {
-        try {
-            const response = await fetch(dataUrl);
-            if (!response.ok) {
-                throw new Error(`Failed to load intelligence file: ${response.statusText}`);
-            }
-            const reports = await response.json();
-
-            // Clear any placeholder content
-            if(adversaryGrid) {
-                adversaryGrid.innerHTML = '';
-
-                // Create and append a card for each report
-                reports.forEach(report => {
-                    if (report.category === 'Adversary Ledger') {
-                        const card = createReportCard(report);
-                        adversaryGrid.appendChild(card);
-                    }
-                });
-
-                // Add event listeners to the newly created cards
-                attachCardListeners();
-            }
-
-        } catch (error) => {
-            console.error(error);
-            if(adversaryGrid) {
-                adversaryGrid.innerHTML = `<p class="text-center text-red-700 col-span-full">Error: Could not load the intelligence ledger. The network may be compromised.</p>`;
-            }
-        }
-    };
-
-    /**
      * Attaches click and keyboard event listeners to all report cards.
+     * This function targets the static cards already present in investigations.html.
      */
     const attachCardListeners = () => {
         const reportCards = document.querySelectorAll('.report-card');
         reportCards.forEach(card => {
             const reportPath = card.dataset.report;
-            card.addEventListener('click', () => showReportModal(reportPath));
-            card.addEventListener('keydown', (event) => {
-                if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    showReportModal(reportPath);
-                }
-            });
+            if (reportPath) {
+                card.addEventListener('click', () => showReportModal(reportPath));
+                card.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        showReportModal(reportPath);
+                    }
+                });
+            }
         });
     };
 
@@ -169,6 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // --- INITIALIZE ---
-    console.log("APL Report Terminal v2.1 is active. Initializing dynamic intelligence ledger.");
-    initializePage();
+    console.log("APL Report Terminal v2.1 is active. Attaching event listeners.");
+    attachCardListeners();
 });
