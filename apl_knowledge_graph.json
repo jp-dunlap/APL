@@ -1,0 +1,277 @@
+{
+  "nodes": [
+    {
+      "id": "Walmart Inc.",
+      "type": "Corporation",
+      "group": "Corporate Hegemony"
+    },
+    {
+      "id": "Tyson Foods",
+      "type": "Corporation",
+      "group": "Corporate Hegemony"
+    },
+    {
+      "id": "Stephens Inc.",
+      "type": "Corporation",
+      "group": "Corporate Hegemony"
+    },
+    {
+      "id": "RTX (Raytheon)",
+      "type": "Corporation",
+      "group": "Military-Industrial Complex"
+    },
+    {
+      "id": "Rafael Advanced Defense Systems",
+      "type": "State-Owned Enterprise",
+      "group": "Military-Industrial Complex"
+    },
+    {
+      "id": "Sarah Huckabee Sanders",
+      "type": "State Actor",
+      "group": "Executive Branch"
+    },
+    {
+      "id": "John Boozman",
+      "type": "State Actor",
+      "group": "Legislative Branch"
+    },
+    {
+      "id": "Steve Womack",
+      "type": "State Actor",
+      "group": "Legislative Branch"
+    },
+    {
+      "id": "AIPAC",
+      "type": "Lobbying Organization",
+      "group": "Influence Industry"
+    },
+    {
+      "id": "Arkansas State Chamber of Commerce",
+      "type": "Lobbying Organization",
+      "group": "Influence Industry"
+    },
+    {
+      "id": "University of Arkansas",
+      "type": "Institution",
+      "group": "Academic-Normalization Complex"
+    },
+    {
+      "id": "ATRS",
+      "type": "Institution",
+      "group": "Financial Complicity"
+    },
+    {
+      "id": "Dennis Milligan",
+      "type": "State Actor",
+      "group": "Executive Branch"
+    },
+    {
+      "id": "R2S Joint Venture",
+      "type": "Corporation",
+      "group": "Military-Industrial Complex"
+    },
+    {
+      "id": "Act 710",
+      "type": "Legislation",
+      "group": "State Apparatus"
+    },
+    {
+      "id": "Jim Dotson",
+      "type": "State Actor",
+      "group": "Legislative Branch"
+    },
+    {
+      "id": "UAMS",
+      "type": "Institution",
+      "group": "Healthcare-Apartheid Nexus"
+    },
+    {
+      "id": "Netafim",
+      "type": "Corporation",
+      "group": "Agribusiness-Apartheid Axis"
+    },
+    {
+      "id": "Christian Zionism Network",
+      "type": "Ideological Apparatus",
+      "group": "Ideological Apparatus"
+    },
+    {
+      "id": "Cellebrite",
+      "type": "Corporation",
+      "group": "Military-Police Nexus"
+    },
+    {
+      "id": "Arkansas State Police",
+      "type": "State Actor",
+      "group": "Military-Police Nexus"
+    },
+    {
+        "id": "Arkansas Farm Bureau",
+        "type": "Lobbying Organization",
+        "group": "Influence Industry"
+    },
+    {
+        "id": "Rose Group Advisors",
+        "type": "Lobbying Organization",
+        "group": "Influence Industry"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Walmart Inc.",
+      "target": "John Boozman",
+      "label": "FUNDS",
+      "value": 255040
+    },
+    {
+      "source": "Walmart Inc.",
+      "target": "Steve Womack",
+      "label": "FUNDS",
+      "value": 34760
+    },
+    {
+      "source": "Walmart Inc.",
+      "target": "Sarah Huckabee Sanders",
+      "label": "FUNDS (via Walton Family)",
+      "value": 501500
+    },
+    {
+      "source": "Tyson Foods",
+      "target": "John Boozman",
+      "label": "FUNDS",
+      "value": 123150
+    },
+    {
+      "source": "Tyson Foods",
+      "target": "Steve Womack",
+      "label": "FUNDS",
+      "value": 30850
+    },
+    {
+      "source": "Stephens Inc.",
+      "target": "John Boozman",
+      "label": "FUNDS",
+      "value": 177750
+    },
+    {
+      "source": "Stephens Inc.",
+      "target": "Steve Womack",
+      "label": "FUNDS",
+      "value": 27400
+    },
+    {
+      "source": "AIPAC",
+      "target": "Steve Womack",
+      "label": "FUNDS",
+      "value": 98047
+    },
+    {
+      "source": "AIPAC",
+      "target": "John Boozman",
+      "label": "FUNDS (via PACs)",
+      "value": 72400
+    },
+    {
+      "source": "RTX (Raytheon)",
+      "target": "R2S Joint Venture",
+      "label": "PARTNERS_WITH",
+      "value": 10
+    },
+    {
+      "source": "Rafael Advanced Defense Systems",
+      "target": "R2S Joint Venture",
+      "label": "PARTNERS_WITH",
+      "value": 10
+    },
+    {
+      "source": "Sarah Huckabee Sanders",
+      "target": "R2S Joint Venture",
+      "label": "SPONSORS",
+      "value": 5
+    },
+    {
+      "source": "RTX (Raytheon)",
+      "target": "State of Arkansas",
+      "label": "RECEIVED_SUBSIDY_FROM",
+      "value": 3600000
+    },
+    {
+      "source": "Jim Dotson",
+      "target": "RTX (Raytheon)",
+      "label": "APPROVED_SUBSIDY_FOR",
+      "value": 5
+    },
+    {
+      "source": "Dennis Milligan",
+      "target": "ATRS",
+      "label": "INFLUENCED_INVESTMENT_IN",
+      "value": 5
+    },
+    {
+      "source": "ATRS",
+      "target": "Israel Bonds",
+      "label": "INVESTS_IN",
+      "value": 50000000
+    },
+    {
+      "source": "University of Arkansas",
+      "target": "IDF",
+      "label": "NORMALIZES (via Study Abroad)",
+      "value": 3
+    },
+    {
+      "source": "Tyson Foods",
+      "target": "Believer Meats (Israel)",
+      "label": "INVESTS_IN",
+      "value": 8
+    },
+    {
+      "source": "Netafim",
+      "target": "Arkansas Agriculture",
+      "label": "SUPPLIES_TECHNOLOGY_TO",
+      "value": 5
+    },
+    {
+      "source": "Christian Zionism Network",
+      "target": "John Thurston",
+      "label": "EDUCATED_AND_FUNDED",
+      "value": 4
+    },
+    {
+      "source": "Cellebrite",
+      "target": "Arkansas State Police",
+      "label": "SUPPLIES_SURVEILLANCE_TECH_TO",
+      "value": 788000
+    },
+    {
+        "source": "Walmart Inc.",
+        "target": "Arkansas State Chamber of Commerce",
+        "label": "FUNDS_PAC",
+        "value": 7500
+    },
+    {
+        "source": "Tyson Foods",
+        "target": "Arkansas State Chamber of Commerce",
+        "label": "FUNDS_PAC",
+        "value": 15000
+    },
+    {
+        "source": "Arkansas State Chamber of Commerce",
+        "target": "Sarah Huckabee Sanders",
+        "label": "INFLUENCES",
+        "value": 8
+    },
+    {
+        "source": "Arkansas Farm Bureau",
+        "target": "State of Arkansas",
+        "label": "INFLUENCES",
+        "value": 8
+    },
+    {
+        "source": "Rose Group Advisors",
+        "target": "State of Arkansas",
+        "label": "LOBBIES",
+        "value": 8
+    }
+  ]
+}
