@@ -14,6 +14,10 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- vis.js Network CDN -->
+    <link href="https://unpkg.com/vis-network/styles/vis-network.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -50,218 +54,16 @@
             </p>
         </header>
 
-        <section id="adversary-ledger" class="mb-16">
-            <h2 class="text-3xl font-bold text-center mb-8 font-serif">The Adversary Ledger</h2>
-            <div id="adversary-ledger-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12">
-                
-                <!-- Raytheon Settlement -->
-                <div class="report-card" data-report="investigation-raytheon-settlement.html" role="button" tabindex="0">
-                    <div>
-                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Special Report: The FOIA Disclosures</p>
-                        <h3 class="text-2xl font-bold mt-2 font-serif">The $3.6 Million Sweetener</h3>
-                        <p class="mt-3 text-gray-800">Based on state documents obtained via FOIA, this report provides irrefutable proof of how Arkansas gave a multi-million dollar handout to Raytheon just months before the company announced its new Israeli missile facility.</p>
-                    </div>
-                    <div class="mt-6">
-                        <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
-                    </div>
-                </div>
-
-                <!-- Follow the Money -->
-                <div class="report-card" data-report="investigation-follow-the-money.html" role="button" tabindex="0">
-                    <div>
-                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Definitive Report: Financial Architecture</p>
-                        <h3 class="text-2xl font-bold mt-2 font-serif">Follow the Money: The Complicity Feedback Loop</h3>
-                        <p class="mt-3 text-gray-800">A definitive, data-driven resource mapping the financial circuits that connect corporate and pro-Israel lobbying interests to Arkansas's key political figures, exposing the self-reinforcing system of financial patronage and policy capture.</p>
-                    </div>
-                    <div class="mt-6">
-                        <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
-                    </div>
-                </div>
-
-                <!-- Agribusiness-Apartheid Axis -->
-                <div class="report-card" data-report="investigation-agribusiness-axis.html" role="button" tabindex="0">
-                    <div>
-                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Report: The Agribusiness-Apartheid Axis</p>
-                        <h3 class="text-2xl font-bold mt-2 font-serif">From the Delta to the Desert</h3>
-                        <p class="mt-3 text-gray-800">An exhaustive analysis of how Arkansas's dominant agricultural sector is technologically and financially integrated with the Israeli colonial project, detailing Tyson Foods' strategic tech pipeline and Netafim's "Water-as-Weapon" strategy.</p>
-                    </div>
-                    <div class="mt-6">
-                        <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
-                    </div>
-                </div>
-
-                <!-- Christian Zionism -->
-                <div class="report-card" data-report="investigation-christian-zionism.html" role="button" tabindex="0">
-                    <div>
-                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Report: The Ideological Apparatus</p>
-                        <h3 class="text-2xl font-bold mt-2 font-serif">Christian Zionism's Command & Control</h3>
-                        <p class="mt-3 text-gray-800">A deep-dive into the institutional power of Christian Zionism, mapping the network of leaders, media, and financial flows that translate theological doctrine into material support for the Israeli state and its illegal settlement enterprise.</p>
-                    </div>
-                    <div class="mt-6">
-                        <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
-                    </div>
-                </div>
-
-                <!-- Academic-Normalization Complex -->
-                <div class="report-card" data-report="investigation-academic-complex.html" role="button" tabindex="0">
-                    <div>
-                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Report: Academic & State Complicity</p>
-                        <h3 class="text-2xl font-bold mt-2 font-serif">The Academic-Normalization Complex</h3>
-                        <p class="mt-3 text-gray-800">Exposing how Arkansas's public universities are instrumentalized to legitimize the Israeli state, from faculty-led trips that "work out with the IDF" to the enforcement of anti-BDS loyalty oaths and state-subsidized research partnerships.</p>
-                    </div>
-                    <div class="mt-6">
-                        <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
-                    </div>
-                </div>
-
-                <!-- Military-Police Nexus -->
-                <div class="report-card" data-report="investigation-military-police-nexus.html" role="button" tabindex="0">
-                    <div>
-                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Report: The Military-Industrial Complex</p>
-                        <h3 class="text-2xl font-bold mt-2 font-serif">The Military-Police Nexus</h3>
-                        <p class="mt-3 text-gray-800">Analyzing the symbiotic loop between Arkansas's defense industry exporting weapons of control and the simultaneous militarization of its domestic police forces with both military hardware and Israeli surveillance software.</p>
-                    </div>
-                    <div class="mt-6">
-                        <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
-                    </div>
-                </div>
-
-                <!-- NEW: R2S Supply Chain -->
-                <div class="report-card" data-report="investigation-r2s-supply-chain.html" role="button" tabindex="0">
-                    <div>
-                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Report: The Military-Industrial Complex</p>
-                        <h3 class="text-2xl font-bold mt-2 font-serif">The R2S Kill Chain: A Supply Web Analysis</h3>
-                        <p class="mt-3 text-gray-800">A deep-dive forensic analysis identifying the top 5 U.S.-based sub-tier suppliers for Israel's Tamir missile. This report maps the specific corporate nodes and logistical chokepoints that form the material foundation of the R2S-Camden facility.</p>
-                    </div>
-                    <div class="mt-6">
-                        <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
-                    </div>
-                </div>
-
-                <div class="report-card" data-report="investigation-state-apparatus.html" role="button" tabindex="0">
-                    <div>
-                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Report: The State Apparatus</p>
-                        <h3 class="text-2xl font-bold mt-2 font-serif">The Executive Committee</h3>
-                        <p class="mt-3 text-gray-800">An analysis of the executive, legislative, and judicial branches in Arkansas, revealing how the formal structures of government are utilized to enforce ruling class interests.</p>
-                    </div>
-                    <div class="mt-6">
-                        <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
-                    </div>
-                </div>
-
-                <div class="report-card" data-report="investigation-corporate-nexus.html" role="button" tabindex="0">
-                    <div>
-                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Report: The Political-Corporate Nexus</p>
-                        <h3 class="text-2xl font-bold mt-2 font-serif">The Architects of Power</h3>
-                        <p class="mt-3 text-gray-800">Mapping the flow of capital from major corporations into the political machine, detailing the lobbying firms and financial contributions that translate economic power into policy.</p>
-                    </div>
-                    <div class="mt-6">
-                        <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
-                    </div>
-                </div>
-
-                <div class="report-card" data-report="investigation-influence-industry.html" role="button" tabindex="0">
-                    <div>
-                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Report: The Influence Industry</p>
-                        <h3 class="text-2xl font-bold mt-2 font-serif">The Switchboard</h3>
-                        <p class="mt-3 text-gray-800">An analysis of the lobbying apparatus that translates corporate power into state policy, mapping the interlocking network of the Arkansas State Chamber of Commerce, Rose Group Advisors, and the Arkansas Farm Bureau.</p>
-                    </div>
-                    <div class="mt-6">
-                        <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
-                    </div>
-                </div>
-
-                <div class="report-card" data-report="investigation-walmart-pipeline.html" role="button" tabindex="0">
-                    <div>
-                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Report: The Corporate-Military Nexus</p>
-                        <h3 class="text-2xl font-bold mt-2 font-serif">Walmart's Tech Pipeline</h3>
-                        <p class="mt-3 text-gray-800">A detailed analysis of how Walmart sources technology directly from the Israeli military and intelligence apparatus, repurposing it for corporate dominance.</p>
-                    </div>
-                    <div class="mt-6">
-                        <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
-                    </div>
-                </div>
-                
-                <div class="report-card" data-report="investigation-r2s-nexus.html" role="button" tabindex="0">
-                    <div>
-                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Report: The Military-Industrial Complex</p>
-                        <h3 class="text-2xl font-bold mt-2 font-serif">The R2S Forward Base</h3>
-                        <p class="mt-3 text-gray-800">A deep-dive analysis of the Raytheon-Rafael joint venture in East Camden, exposing it as a forward operating base for the Israeli military-industrial complex on U.S. soil.</p>
-                    </div>
-                    <div class="mt-6">
-                        <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
-                    </div>
-                </div>
-                
-                <div class="report-card" data-report="investigation-stephens-inc.html" role="button" tabindex="0">
-                    <div>
-                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Report: Financial Complicity</p>
-                        <h3 class="text-2xl font-bold mt-2 font-serif">The Stephens Inc. Portfolio</h3>
-                        <p class="mt-3 text-gray-800">A forensic financial investigation that deconstructs the investment portfolio of Arkansas's most powerful private investment bank, revealing over \$261 million in complicit holdings.</p>
-                    </div>
-                    <div class="mt-6">
-                        <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
-                    </div>
-                </div>
-                
-                <div class="report-card" data-report="investigation-atrs-bonds.html" role="button" tabindex="0">
-                    <div>
-                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Report: Financial Complicity</p>
-                        <h3 class="text-2xl font-bold mt-2 font-serif">The Pension Fund Pipeline</h3>
-                        <p class="mt-3 text-gray-800">A deep-dive into the Arkansas Teacher Retirement System (ATRS), revealing how public pension funds are invested in corporations that arm, supply, and sustain Israeli apartheid.</p>
-                    </div>
-                     <div class="mt-6">
-                        <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
-                    </div>
-                </div>
-                
-                <div class="report-card" data-report="investigation-treasurer-bonds.html" role="button" tabindex="0">
-                    <div>
-                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Report: Financial Complicity</p>
-                        <h3 class="text-2xl font-bold mt-2 font-serif">The Treasurer's War Chest</h3>
-                        <p class="mt-3 text-gray-800">An analysis of the Arkansas State Treasurer's Office, exposing the direct management of a $52 million Israel Bond portfolio in defiance of fiduciary duty and documented financial risks.</p>
-                    </div>
-                    <div class="mt-6">
-                        <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
-                    </div>
-                </div>
-                
-                <div class="report-card" data-report="investigation-act-710.html" role="button" tabindex="0">
-                    <div>
-                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Report: Legislative Complicity</p>
-                        <h3 class="text-2xl font-bold mt-2 font-serif">The Lawfare Apparatus</h3>
-                        <p class="mt-3 text-gray-800">An analysis of Arkansas Act 710, exposing how state law is weaponized to suppress Palestine solidarity activism and enforce ideological conformity on public contractors.</p>
-                    </div>
-                     <div class="mt-6">
-                        <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
-                    </div>
-                </div>
-
-                <div class="report-card" data-report="investigation-healthcare-nexus.html" role="button" tabindex="0">
-                    <div>
-                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Report: Healthcare & Financial Complicity</p>
-                        <h3 class="text-2xl font-bold mt-2 font-serif">The Healthcare-Apartheid Nexus</h3>
-                        <p class="mt-3 text-gray-800">Exposing how the state's healthcare and pension systems are entangled with the Israeli apartheid economy through pharmaceutical procurement, institutional investments, and academic partnerships.</p>
-                    </div>
-                    <div class="mt-6">
-                        <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
-                    </div>
-                </div>
-
-                <div class="report-card" data-report="investigation-propaganda-pipeline.html" role="button" tabindex="0">
-                    <div>
-                        <p class="text-sm font-semibold text-[#B91C1C] uppercase tracking-wider font-serif">Report: The Ideological Apparatus</p>
-                        <h3 class="text-2xl font-bold mt-2 font-serif">The Propaganda Pipeline</h3>
-                        <p class="mt-3 text-gray-800">Deconstructing how national pro-Israel propaganda is laundered through Arkansas's political elites and amplified by a compliant local media to manufacture consent for apartheid.</p>
-                    </div>
-                    <div class="mt-6">
-                        <span class="font-bold text-gray-900 font-serif">View Report &rarr;</span>
-                    </div>
-                </div>
-            </div>
+        <!-- START: Updated Section for Interactive Graph -->
+        <section id="network-graph-section" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 font-serif">The Network of Complicity</h2>
+            <!-- This div is where the vis.js graph will be rendered -->
+            <div id="network-graph" class="w-full h-[800px] border border-gray-300 bg-white rounded-lg"></div>
         </section>
+        <!-- END: Updated Section for Interactive Graph -->
 
-<section id="mapping-solidarity" class="mb-16">
+
+        <section id="mapping-solidarity" class="mb-16">
             <h2 class="text-3xl font-bold text-center mb-8 font-serif">Mapping Solidarity: The Arkansas Resistance Ecosystem</h2>
             <p class="mt-4 max-w-3xl mx-auto text-lg text-center text-gray-700 mb-12">
                 Our analysis of the network of power is incomplete without a corresponding map of the forces of resistance. The following is a strategic analysis of the Arkansas ecosystem of solidarity, identifying the key organizations and ideological currents that can be mobilized to build an intersectional front against complicity and for a liberated Palestine.
@@ -365,7 +167,7 @@
         </div>
     </footer>
 
-    <!-- SCRIPT LINK CORRECTION -->
+    <!-- SCRIPT LINK -->
     <script src="investigations-script.js"></script>
 </body>
 </html>
