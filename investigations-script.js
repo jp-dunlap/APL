@@ -153,10 +153,15 @@ document.addEventListener('DOMContentLoaded', () => {
         modalContent.innerHTML = '';
     };
 
-    modalClose.addEventListener('click', closeModal);
-    modal.addEventListener('click', (event) => {
-        if (event.target === modal) closeModal();
-    });
+    if (modalClose) {
+        modalClose.addEventListener('click', closeModal);
+    }
+    if (modal) {
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) closeModal();
+        });
+    }
+    
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
             closeModal();
