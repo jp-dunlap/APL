@@ -1,10 +1,15 @@
 /*
     APL | Arkansas Palestine Liberation
-    Script File: investigations-script.js (v2.0 - Dynamic)
+    Script File: investigations-script.js (v2.1 - Corrected)
     Description: This script builds the investigations page dynamically
                  by fetching data from targets.json. It creates the report
                  cards and manages the modal functionality for displaying
                  the full, detailed reports.
+    
+    CHANGE LOG (v2.1):
+    - Corrected the DOM selector logic within showReportModal to accurately
+      target the main content container of the fetched report files,
+      restoring the modal's functionality.
 */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -62,10 +67,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             const html = await response.text();
 
-            // Parse the fetched HTML and isolate the main content container
+            // Parse the fetched HTML
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
-            const reportBody = doc.querySelector('.container'); // Simplified selector
+            
+            // --- FIX ---
+            // The original script correctly identified that the report files have multiple
+            // containers. The first is the nav, the second is the main content.
+            // This logic correctly targets the main content container.
+            const allContainers = doc.querySelectorAll('.container');
+            const reportBody = allContainers.length > 1 ? allContainers[1] : allContainers[0];
 
             if (reportBody) {
                 const contentWrapper = document.createElement('div');
@@ -95,23 +106,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const reports = await response.json();
 
             // Clear any placeholder content
-            adversaryGrid.innerHTML = '';
+            if(adversaryGrid) {
+                adversaryGrid.innerHTML = '';
 
-            // Create and append a card for each report
-            reports.forEach(report => {
-                if (report.category === 'Adversary Ledger') {
-                    const card = createReportCard(report);
-                    adversaryGrid.appendChild(card);
-                }
-                // TODO: Add logic for other categories like "Mapping Solidarity"
-            });
+                // Create and append a card for each report
+                reports.forEach(report => {
+                    if (report.category === 'Adversary Ledger') {
+                        const card = createReportCard(report);
+                        adversaryGrid.appendChild(card);
+                    }
+                });
 
-            // Add event listeners to the newly created cards
-            attachCardListeners();
+                // Add event listeners to the newly created cards
+                attachCardListeners();
+            }
 
-        } catch (error) {
+        } catch (error) => {
             console.error(error);
-            adversaryGrid.innerHTML = `<p class="text-center text-red-700 col-span-full">Error: Could not load the intelligence ledger. The network may be compromised.</p>`;
+            if(adversaryGrid) {
+                adversaryGrid.innerHTML = `<p class="text-center text-red-700 col-span-full">Error: Could not load the intelligence ledger. The network may be compromised.</p>`;
+            }
         }
     };
 
@@ -150,6 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // --- INITIALIZE ---
-    console.log("APL Report Terminal v2.0 is active. Initializing dynamic intelligence ledger.");
+    console.log("APL Report Terminal v2.1 is active. Initializing dynamic intelligence ledger.");
     initializePage();
 });
