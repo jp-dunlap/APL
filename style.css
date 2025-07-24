@@ -1,11 +1,12 @@
 /*
     APL | Arkansas Palestine Liberation
-    Stylesheet v2.7
+    Stylesheet v2.8
     Aesthetic: "Truth in Plain Sight" (CDN Compatible)
     ---
-    CHANGE LOG (v2.7):
+    CHANGE LOG (v2.8):
     - Standardized terminology. Renamed .case-file-card to .report-card
       for journalistic consistency.
+    - Added styling for the new interactive network graph container.
 */
 
 body {
@@ -39,7 +40,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700; /* bold */
 }
 
-/* --- REPORT CARD STYLING --- */
+/* --- REPORT CARD STYLING (Retained for individual report pages) --- */
 .report-card {
     display: block;
     border-width: 1px;
@@ -154,4 +155,16 @@ details[open] > summary::before {
 /* FOOTER STYLING */
 footer hr {
     border-color: #dee2e6; /* gray-200 */
+}
+
+/* --- NEW: NETWORK GRAPH STYLING --- */
+#network-graph {
+    min-height: 600px;
+}
+
+#network-graph p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
