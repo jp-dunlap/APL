@@ -52,7 +52,7 @@
 
         <section id="adversary-ledger" class="mb-16">
             <h2 class="text-3xl font-bold text-center mb-8 font-serif">The Adversary Ledger</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12">
+            <div id="adversary-ledger-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12">
                 
                 <!-- Raytheon Settlement -->
                 <div class="report-card" data-report="investigation-raytheon-settlement.html" role="button" tabindex="0">
@@ -343,6 +343,7 @@
 
     </main>
     
+    <!-- MODAL CONTAINER -->
     <div id="dossier-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
         <div class="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[95vh] flex flex-col">
             <header class="flex justify-between items-center p-4 border-b border-gray-300">
@@ -350,7 +351,8 @@
                 <button id="modal-close" class="text-gray-600 hover:text-black text-4xl font-bold">&times;</button>
             </header>
             <div id="modal-content" class="overflow-y-auto p-2 sm:p-4 md:p-6">
-                </div>
+                <!-- Report content will be injected here by JavaScript -->
+            </div>
         </div>
     </div>
 
@@ -363,6 +365,7 @@
         </div>
     </footer>
 
+    <!-- SCRIPT LINK CORRECTION -->
     <script src="investigations-script.js"></script>
 </body>
 </html>
