@@ -1,128 +1,142 @@
 [
   {
-    "title": "The $3.6 Million Sweetener",
-    "subtitle": "Special Report: The FOIA Disclosures",
-    "description": "Based on state documents obtained via FOIA, this report provides irrefutable proof of how Arkansas gave a multi-million dollar handout to Raytheon just months before the company announced its new Israeli missile facility.",
-    "report_file": "investigation-raytheon-settlement.html",
+    "title": "The Pension Fund Pipeline: A Trust Betrayed",
+    "subtitle": "Definitive Report: Financial Complicity & Political Capture",
+    "description": "A definitive investigation into the Arkansas Teacher Retirement System (ATRS) that exposes how the $22 billion public pension fund was captured by a right-wing political influence campaign. This report deconstructs, with documentary evidence, how State Auditor Dennis Milligan, operating as a key agent of a national network, orchestrated the diversion of public funds into high-risk Israeli bonds, flagrantly violating state law and breaching the sacred fiduciary duty owed to every Arkansas educator, past and present.",
+    "report_file": "investigation-atrs-bonds.html",
     "category": "Adversary Ledger"
   },
   {
-    "title": "Follow the Money: The Complicity Feedback Loop",
-    "subtitle": "Definitive Report: Financial Architecture",
-    "description": "A definitive, data-driven resource mapping the financial circuits that connect corporate and pro-Israel lobbying interests to Arkansas's key political figures, exposing the self-reinforcing system of financial patronage and policy capture.",
-    "report_file": "investigation-follow-the-money.html",
-    "category": "Adversary Ledger"
-  },
-  {
-    "title": "From the Delta to the Desert",
-    "subtitle": "Report: The Agribusiness-Apartheid Axis",
-    "description": "An exhaustive analysis of how Arkansas's dominant agricultural sector is technologically and financially integrated with the Israeli colonial project, detailing Tyson Foods' strategic tech pipeline and Netafim's 'Water-as-Weapon' strategy.",
-    "report_file": "investigation-agribusiness-axis.html",
+    "title": "The BIRD Foundation Pipeline",
+    "subtitle": "Report: Academic & State Complicity",
+    "description": "This report establishes that the U.S.-Israel Binational Industrial Research and Development (BIRD) Foundation operates as a state-corporate welfare pipeline. It leverages U.S. public funds to provide risk-free subsidies to the Israeli security-industrial complex under the guise of \"binational research,\" co-opting Arkansas's public universities in the process.",
+    "report_file": "investigation-bird-foundation.html",
     "category": "Adversary Ledger"
   },
   {
     "title": "Christian Zionism's Command & Control",
     "subtitle": "Report: The Ideological Apparatus",
-    "description": "A deep-dive into the institutional power of Christian Zionism, mapping the network of leaders, media, and financial flows that translate theological doctrine into material support for the Israeli state and its illegal settlement enterprise.",
+    "description": "An intelligence report mapping organized Christian Zionism in Arkansas as a coherent political apparatus. This investigation deconstructs the network of leaders, institutions, financial flows, and media platforms that work in concert to manufacture consent for the Israeli state and exert direct political pressure on the state apparatus.",
     "report_file": "investigation-christian-zionism.html",
-    "category": "Adversary Ledger"
-  },
-  {
-    "title": "The Academic-Normalization Complex",
-    "subtitle": "Report: Academic & State Complicity",
-    "description": "Exposing how Arkansas's public universities are instrumentalized to legitimize the Israeli state, from faculty-led trips that 'work out with the IDF' to the enforcement of anti-BDS loyalty oaths and state-subsidized research partnerships.",
-    "report_file": "investigation-academic-complex.html",
-    "category": "Adversary Ledger"
-  },
-  {
-    "title": "The Military-Police Nexus",
-    "subtitle": "Report: The Military-Industrial Complex",
-    "description": "Analyzing the symbiotic loop between Arkansas's defense industry exporting weapons of control and the simultaneous militarization of its domestic police forces with both military hardware and Israeli surveillance software.",
-    "report_file": "investigation-military-police-nexus.html",
-    "category": "Adversary Ledger"
-  },
-  {
-    "title": "The R2S Kill Chain: A Supply Web Analysis",
-    "subtitle": "Report: The Military-Industrial Complex",
-    "description": "A deep-dive forensic analysis identifying the top 5 U.S.-based sub-tier suppliers for Israel's Tamir missile. This report maps the specific corporate nodes and logistical chokepoints that form the material foundation of the R2S-Camden facility.",
-    "report_file": "investigation-r2s-supply-chain.html",
-    "category": "Adversary Ledger"
-  },
-  {
-    "title": "The Executive Committee",
-    "subtitle": "Report: The State Apparatus",
-    "description": "An analysis of the executive, legislative, and judicial branches in Arkansas, revealing how the formal structures of government are utilized to enforce ruling class interests.",
-    "report_file": "investigation-state-apparatus.html",
     "category": "Adversary Ledger"
   },
   {
     "title": "The Architects of Power",
     "subtitle": "Report: The Political-Corporate Nexus",
-    "description": "Mapping the flow of capital from major corporations into the political machine, detailing the lobbying firms and financial contributions that translate economic power into policy.",
+    "description": "The state's political landscape is not shaped by democratic will but is fundamentally engineered by corporate power. This report maps the financial architecture of this influence, tracing the flow of capital from corporate boardrooms to the halls of government and detailing the lobbying apparatus that ensures policy serves profit before people.",
     "report_file": "investigation-corporate-nexus.html",
     "category": "Adversary Ledger"
   },
   {
-    "title": "The Switchboard",
+    "title": "Follow the Money: The Complicity Feedback Loop",
+    "subtitle": "Definitive Report: The Financial Architecture of Power",
+    "description": "This definitive financial intelligence report provides a granular, evidence-based map of the financial circuits that constitute the nexus of corporate, ideological, and political power in Arkansas. Analysis of federal and state financial disclosures from 2020 to the present reveals a deeply entrenched and self-reinforcing system—the \"Complicity Feedback Loop\"—whereby a concentrated cohort of legacy corporations and pro-Israel lobbying interests systematically translates financial patronage into binding state policy and political dominance. These are not merely campaign donations; they are strategic investments in a political apparatus that, in turn, secures and advances the financial and ideological interests of its patrons.",
+    "report_file": "investigation-follow-the-money.html",
+    "category": "Adversary Ledger"
+  },
+  {
+    "title": "Vital Signs: The Healthcare-Apartheid Nexus",
+    "subtitle": "Report: Healthcare & Financial Complicity",
+    "description": "A deep-structure analysis of the Arkansas healthcare system's material and ideological entanglement with the Israeli apartheid state and its supporting military-corporate apparatus. This report rejects the bourgeois fiction of institutional neutrality and exposes how institutions of healing are financially and academically invested in a colonial project predicated on the destruction of Palestinian life.",
+    "report_file": "investigation-healthcare-nexus.html",
+    "category": "Adversary Ledger"
+  },
+  {
+    "title": "Manufacturing Consent",
+    "subtitle": "Report: The Ideological Apparatus",
+    "description": "The media landscape and other ideological institutions in Arkansas largely function as an apparatus of the ruling class. They play a crucial role in legitimizing existing power structures, framing political discourse in ways favorable to corporate interests, and marginalizing or demonizing leftist perspectives and movements.",
+    "report_file": "investigation-ideological-apparatus.html",
+    "category": "Adversary Ledger"
+  },
+  {
+    "title": "The Switchboard: An Anatomy of Control",
     "subtitle": "Report: The Influence Industry",
-    "description": "An analysis of the lobbying apparatus that translates corporate power into state policy, mapping the interlocking network of the Arkansas State Chamber of Commerce, Rose Group Advisors, and the Arkansas Farm Bureau.",
+    "description": "This report provides a deep-structure analysis of the influence industry in Arkansas, deconstructing the apparatus through which corporate capital translates its will into state power.",
     "report_file": "investigation-influence-industry.html",
     "category": "Adversary Ledger"
   },
   {
-    "title": "Walmart's Tech Pipeline",
-    "subtitle": "Report: The Corporate-Military Nexus",
-    "description": "A detailed analysis of how Walmart sources technology directly from the Israeli military and intelligence apparatus, repurposing it for corporate dominance.",
-    "report_file": "investigation-walmart-pipeline.html",
-    "category": "Adversary Ledger"
-  },
-  {
-    "title": "The R2S Forward Base",
+    "title": "The Military-Police Nexus",
     "subtitle": "Report: The Military-Industrial Complex",
-    "description": "A deep-dive analysis of the Raytheon-Rafael joint venture in East Camden, exposing it as a forward operating base for the Israeli military-industrial complex on U.S. soil.",
-    "report_file": "investigation-r2s-nexus.html",
-    "category": "Adversary Ledger"
-  },
-  {
-    "title": "The Stephens Inc. Portfolio",
-    "subtitle": "Report: Financial Complicity",
-    "description": "A forensic financial investigation that deconstructs the investment portfolio of Arkansas's most powerful private investment bank, revealing over $261 million in complicit holdings.",
-    "report_file": "investigation-stephens-inc.html",
-    "category": "Adversary Ledger"
-  },
-  {
-    "title": "The Pension Fund Pipeline",
-    "subtitle": "Report: Financial Complicity",
-    "description": "A deep-dive into the Arkansas Teacher Retirement System (ATRS), revealing how public pension funds are invested in corporations that arm, supply, and sustain Israeli apartheid.",
-    "report_file": "investigation-atrs-bonds.html",
-    "category": "Adversary Ledger"
-  },
-  {
-    "title": "The Treasurer's War Chest",
-    "subtitle": "Report: Financial Complicity",
-    "description": "An analysis of the Arkansas State Treasurer's Office, exposing the direct management of a $52 million Israel Bond portfolio in defiance of fiduciary duty and documented financial risks.",
-    "report_file": "investigation-treasurer-bonds.html",
-    "category": "Adversary Ledger"
-  },
-  {
-    "title": "The Lawfare Apparatus",
-    "subtitle": "Report: Legislative Complicity",
-    "description": "An analysis of Arkansas Act 710, exposing how state law is weaponized to suppress Palestine solidarity activism and enforce ideological conformity on public contractors.",
-    "report_file": "investigation-act-710.html",
-    "category": "Adversary Ledger"
-  },
-  {
-    "title": "The Healthcare-Apartheid Nexus",
-    "subtitle": "Report: Healthcare & Financial Complicity",
-    "description": "Exposing how the state's healthcare and pension systems are entangled with the Israeli apartheid economy through pharmaceutical procurement, institutional investments, and academic partnerships.",
-    "report_file": "investigation-healthcare-nexus.html",
+    "description": "Arkansas functions as a critical nexus in the circulation of tools and tactics of state repression. A symbiotic relationship exists between the state's actively promoted defense-industrial complex—which exports weaponry to global conflict zones—and the deep militarization of its domestic law enforcement, which imports the equipment, training, and ideology of war.",
+    "report_file": "investigation-military-police-nexus.html",
     "category": "Adversary Ledger"
   },
   {
     "title": "The Propaganda Pipeline",
     "subtitle": "Report: The Ideological Apparatus",
-    "description": "Deconstructing how national pro-Israel propaganda is laundered through Arkansas's political elites and amplified by a compliant local media to manufacture consent for apartheid.",
+    "description": "The Arkansas media landscape functions as a critical component of a broader ideological apparatus, laundering and amplifying propaganda from powerful national lobbying organizations like AIPAC and the ADL. This report exposes the network of local political figures and business elites who channel these narratives into compliant media outlets, manufacturing consent for Israeli state policies and marginalizing dissent.",
     "report_file": "investigation-propaganda-pipeline.html",
+    "category": "Adversary Ledger"
+  },
+  {
+    "title": "The R2S Forward Base: Israel's Arkansas Arsenal",
+    "subtitle": "Report: The Military-Industrial Complex",
+    "description": "A materialist analysis of the Raytheon-Rafael Strategic Systems (R2S) joint venture in East Camden, Arkansas. The facility is exposed not as a benign economic development project, but as a forward operating base for the Israeli state's military-industrial complex, strategically embedded within the United States to exploit its supply chains, public subsidies, and political cover. This arrangement insulates the Israeli war machine from political pressure while making its armaments eligible for U.S. funding, effectively forcing the American taxpayer to subsidize the occupation of Palestine.",
+    "report_file": "investigation-r2s-nexus.html",
+    "category": "Adversary Ledger"
+  },
+  {
+    "title": "The R2S Kill Chain: A Supply Web Analysis",
+    "subtitle": "Report: The Military-Industrial Complex",
+    "description": "A deep-dive forensic analysis identifying the top U.S.-based sub-tier suppliers for Israel's Tamir missile. This report maps the specific corporate nodes, high-technology components, and logistical chokepoints that form the material foundation of the Raytheon-Rafael Strategic Systems (R2S) facility in Camden, Arkansas, transforming an abstract understanding of the military supply chain into an actionable map of its decentralized, material components.",
+    "report_file": "investigation-r2s-supply-chain.html",
+    "category": "Adversary Ledger"
+  },
+  {
+    "title": "The $3.6 Million Sweetener: A Dossier on the Raytheon Settlement",
+    "subtitle": "Special Report: The FOIA Disclosures",
+    "description": "This intelligence dossier, based on documents obtained via the Arkansas Freedom of Information Act, provides irrefutable proof of state-corporate collusion between the State of Arkansas and the global weapons manufacturer Raytheon (RTX). The evidence reveals a calculated act of corporate welfare, the timing of which exposes its true purpose: to provide a multi-million dollar inducement to secure a forward operating base for the Israeli military-industrial complex on Arkansas soil.",
+    "report_file": "investigation-raytheon-settlement.html",
+    "category": "Adversary Ledger"
+  },
+  {
+    "title": "The Executive Committee of the Bourgeoisie",
+    "subtitle": "Report: The State Apparatus",
+    "description": "The formal state apparatus in Arkansas is not a neutral arbiter but functions unequivocally as the executive committee of the ruling class. Its primary role is to protect and expand the interests of corporate capital, enforce a deeply entrenched white supremacist social order, and uphold patriarchal norms. This analysis deconstructs the illusion of democratic governance to reveal the raw mechanisms of class rule, lubricated by a continuous flow of corporate and ideological cash.",
+    "report_file": "investigation-state-apparatus.html",
+    "category": "Adversary Ledger"
+  },
+  {
+    "title": "The Architecture of Complicity: A Forensic Analysis of the Stephens Inc. Portfolio",
+    "subtitle": "Report: Financial Complicity",
+    "description": "This report presents a forensic financial investigation into the investment portfolio of Stephens Inc., a key financial institution of the Arkansas ruling class. The analysis reveals the firm's deep and systemic financial complicity in the machinery of the Israeli occupation and the broader military-industrial complex. By deconstructing the firm's publicly disclosed holdings, this investigation maps the architecture through which regional wealth is channeled into corporations that directly enable and profit from state violence.",
+    "report_file": "investigation-stephens-inc.html",
+    "category": "Adversary Ledger"
+  },
+  {
+    "title": "The Treasurer's War Chest: An Analysis of Arkansas State Funds & The Israel Bond Portfolio",
+    "subtitle": "Report: Financial Complicity",
+    "description": "This report provides a forensic analysis of the Arkansas State Treasurer's Office as a primary actor in the state's financial complicity with the Israeli apartheid regime, focusing on the direct management of general state funds.",
+    "report_file": "investigation-treasurer-bonds.html",
+    "category": "Adversary Ledger"
+  },
+  {
+    "title": "Walmart's Israeli Tech Pipeline",
+    "subtitle": "Report: The Corporate-Military Nexus",
+    "description": "In a strategic pivot to defend its global retail dominance, Walmart Inc. has systematically constructed a direct technology pipeline from Israel to its core business operations. This report maps this ecosystem of acquisitions and strategic investments, revealing a deliberate strategy to source critical capabilities from a technology sector deeply intertwined with the Israeli military and intelligence apparatus.",
+    "report_file": "investigation-walmart-pipeline.html",
+    "category": "Adversary Ledger"
+  },
+  {
+    "title": "From the Delta to the Desert",
+    "subtitle": "Report: The Agribusiness-Apartheid Axis",
+    "description": "A deep-structure analysis exposing the systemic complicity that links the exploitation of Arkansas's land, water, and labor to the technological and economic fortification of the Israeli occupation. This report details how the state's dominant agricultural sector is not merely a political force but an active participant in a technological and financial exchange with the Israeli colonial project.",
+    "report_file": "investigation-agribusiness-axis.html",
+    "category": "Adversary Ledger"
+  },
+  {
+    "title": "The University as an Instrument of Statecraft",
+    "subtitle": "Report: The Academic-Normalization Complex",
+    "description": "An exhaustive investigation exposing how Arkansas's public university system is instrumentalized to normalize and legitimize the Israeli state and its military apparatus. This report details a multi-vector \"Academic-Normalization Complex\" that functions through curated academic programming, systemic institutional complicity, and a powerful state-level architecture of legislative and financial control, transforming centers of learning into agents of a specific geopolitical agenda.",
+    "report_file": "investigation-academic-complex.html",
+    "category": "Adversary Ledger"
+  },
+  {
+    "title": "Act 710: The Lawfare Apparatus",
+    "subtitle": "Report: Legislative Complicity",
+    "description": "Arkansas Act 710 of 2017 is a key instrument of state-level complicity, designed to suppress Palestine solidarity activism by leveraging state contracts as a tool of political repression. This analysis deconstructs the law, its ideological underpinnings, and its role in a coordinated, national campaign to shield the Israeli state from accountability.",
+    "report_file": "investigation-act-710.html",
     "category": "Adversary Ledger"
   }
 ]
