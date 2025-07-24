@@ -1,10 +1,10 @@
 /*
     APL | Arkansas Palestine Liberation
-    Script File: investigations-script.js (v3.0 - Network Visualization)
+    Script File: investigations-script.js (v3.2 - Aesthetic & Functional Overhaul)
     Description: This script fetches the APL knowledge graph data and renders
-                 it as an interactive network graph using vis.js. It also
-                 retains the modal functionality to display detailed reports
-                 when a node in the graph is clicked.
+                 it as a visually coherent, interactive network graph. This version
+                 includes fine-tuned physics, improved aesthetics for readability,
+                 and robust modal linkage for accessing detailed reports.
 */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -19,101 +19,157 @@ document.addEventListener('DOMContentLoaded', () => {
     const graphContainer = document.getElementById(graphContainerId);
 
     /**
-     * Renders the interactive network graph.
+     * Fetches the full HTML of a report and displays it in the modal.
+     * @param {string} reportPath - The path to the report's HTML file.
+     */
+    const showReportModal = async (reportPath) => {
+        if (!reportPath) return;
+
+        try {
+            modalContent.innerHTML = '<p class="text-center text-lg p-8 font-serif">Accessing file...</p>';
+            document.body.style.overflow = 'hidden';
+            modal.classList.remove('hidden');
+
+            const response = await fetch(reportPath);
+            if (!response.ok) {
+                throw new Error(`Network response was not ok. Status: ${response.status}`);
+            }
+            const html = await response.text();
+
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            
+            const allContainers = doc.querySelectorAll('.container');
+            const reportBody = allContainers.length > 1 ? allContainers[1] : allContainers[0];
+
+            if (reportBody) {
+                const contentWrapper = document.createElement('div');
+                contentWrapper.className = 'report-body';
+                contentWrapper.innerHTML = reportBody.innerHTML;
+                modalContent.innerHTML = '';
+                modalContent.appendChild(contentWrapper);
+            } else {
+                throw new Error("Could not find the main content in the fetched report file.");
+            }
+            
+        } catch (error) {
+            console.error('Failed to fetch report:', error);
+            modalContent.innerHTML = `<div class="p-8 text-center"><h3 class="font-serif text-2xl text-[#B91C1C] mb-4">Access Denied</h3><p class="text-lg">Error: Could not load report. The file '${reportPath}' may be missing or named incorrectly.</p></div>`;
+        }
+    };
+
+    /**
+     * Renders the interactive network graph with enhanced aesthetics and physics.
      * @param {object} graphData - The parsed JSON data for the graph.
      */
     const renderNetworkGraph = (graphData) => {
+        // Map nodes and edges from the JSON data
         const nodes = new vis.DataSet(graphData.nodes.map(node => ({
             id: node.id,
             label: node.id,
             group: node.group,
-            title: `Group: ${node.group}` // Tooltip
+            title: `Group: ${node.group}` // Tooltip on hover
         })));
 
         const edges = new vis.DataSet(graphData.edges.map(edge => ({
             from: edge.source,
             to: edge.target,
             label: edge.label,
-            value: edge.value > 1000 ? Math.log10(edge.value) : 1, // Log scale for better visualization
-            title: `Value: ${edge.value.toLocaleString()}` // Tooltip
+            // Use logarithmic scaling for edge width to handle large value differences
+            value: edge.value > 1000 ? Math.log(edge.value) : 1,
+            title: `Value: ${edge.value.toLocaleString()}` // Tooltip on hover
         })));
 
         const data = { nodes, edges };
 
+        // --- AESTHETIC & PHYSICS OVERHAUL ---
         const options = {
             nodes: {
                 shape: 'dot',
-                size: 20,
+                size: 25,
                 font: {
-                    size: 14,
-                    color: '#333'
+                    size: 16,
+                    color: '#1f2937', // Dark gray for text
+                    strokeWidth: 3, // Thickness of the outline
+                    strokeColor: 'rgba(255, 255, 255, 0.8)' // Semi-transparent white outline for readability
                 },
-                borderWidth: 2
+                borderWidth: 3,
+                shadow: true
             },
             edges: {
                 width: 2,
                 color: {
-                    color: '#848484',
+                    color: '#6b7280', // Medium gray
                     highlight: '#B91C1C',
                     hover: '#B91C1C'
                 },
                 arrows: {
-                    to: { enabled: true, scaleFactor: 0.5 }
+                    to: { enabled: true, scaleFactor: 0.7 }
+                },
+                smooth: {
+                    type: 'continuous' // Use curved edges
+                }
+            },
+            physics: {
+                // Use a solver that creates more space between nodes
+                solver: 'barnesHut',
+                barnesHut: {
+                    gravitationalConstant: -8000, // Push nodes away from each other
+                    centralGravity: 0.3,
+                    springLength: 250, // Ideal length of an edge
+                    springConstant: 0.04,
+                    damping: 0.09,
+                    avoidOverlap: 0.1
+                },
+                stabilization: {
+                    iterations: 200, // Run more iterations for a stable layout
+                    fit: true
                 }
             },
             interaction: {
                 hover: true,
+                hoverConnectedEdges: true, // Highlight connected edges on node hover
                 tooltipDelay: 200,
                 dragNodes: true,
                 dragView: true,
                 zoomView: true
             },
-            physics: {
-                solver: 'forceAtlas2Based',
-                forceAtlas2Based: {
-                    gravitationalConstant: -50,
-                    centralGravity: 0.01,
-                    springLength: 200,
-                    springConstant: 0.08,
-                },
-                maxVelocity: 50,
-                minVelocity: 0.1,
-                stabilization: {
-                    iterations: 150
-                }
-            },
             groups: {
-                "Corporate Hegemony": { color: { background: '#fca5a5', border: '#b91c1c' } },
-                "Military-Industrial Complex": { color: { background: '#9ca3af', border: '#4b5563' } },
-                "State Actor": { color: { background: '#a5b4fc', border: '#4338ca' } },
-                "Influence Industry": { color: { background: '#fdba74', border: '#c2410c' } },
-                "Academic-Normalization Complex": { color: { background: '#fde047', border: '#a16207' } },
-                "Financial Complicity": { color: { background: '#6ee7b7', border: '#047857' } },
-                "Healthcare-Apartheid Nexus": { color: { background: '#a78bfa', border: '#6d28d9' } },
-                "Agribusiness-Apartheid Axis": { color: { background: '#bbf7d0', border: '#166534' } },
-                "Ideological Apparatus": { color: { background: '#f9a8d4', border: '#9d174d' } },
-                "Military-Police Nexus": { color: { background: '#7dd3fc', border: '#0369a1' } },
+                // Color scheme designed for clarity and visual distinction
+                "Corporate Hegemony": { color: { background: '#ef4444', border: '#991b1b' } }, // Red
+                "Military-Industrial Complex": { color: { background: '#6b7280', border: '#1f2937' } }, // Gray
+                "State Actor": { color: { background: '#3b82f6', border: '#1d4ed8' } }, // Blue
+                "Influence Industry": { color: { background: '#f97316', border: '#9a3412' } }, // Orange
+                "Academic-Normalization Complex": { color: { background: '#eab308', border: '#854d0e' } }, // Yellow
+                "Financial Complicity": { color: { background: '#10b981', border: '#047857' } }, // Green
+                "Healthcare-Apartheid Nexus": { color: { background: '#8b5cf6', border: '#5b21b6' } }, // Violet
+                "Agribusiness-Apartheid Axis": { color: { background: '#22c55e', border: '#15803d' } }, // Lime
+                "Ideological Apparatus": { color: { background: '#ec4899', border: '#9d174d' } }, // Pink
+                "Military-Police Nexus": { color: { background: '#0ea5e9', border: '#0369a1' } }, // Sky Blue
+                "Legislation": { color: { background: '#a8a29e', border: '#44403c' } } // Stone
             }
         };
 
         const network = new vis.Network(graphContainer, data, options);
-        
+
         // --- EVENT LISTENER FOR NODE CLICKS ---
         network.on("click", function (params) {
             if (params.nodes.length > 0) {
                 const nodeId = params.nodes[0];
-                const reportFileName = `investigation-${nodeId.toLowerCase().replace(/ \(.+\)/, '').replace(/ /g, '-')}.html`;
+                // Create a URL-friendly filename from the node ID
+                const reportFileName = `investigation-${nodeId.toLowerCase()
+                    .replace(/ inc\.| \(.+\)/g, '') // Remove suffixes like ' Inc.' or '(Raytheon)'
+                    .trim()
+                    .replace(/ /g, '-')}.html`;
+                
                 showReportModal(reportFileName);
             }
         });
-    };
-
-    /**
-     * Fetches and displays a report in the modal. (Retained from previous version)
-     * @param {string} reportPath - The path to the report's HTML file.
-     */
-    const showReportModal = async (reportPath) => {
-        // ... (The existing showReportModal function code remains unchanged)
+        
+        // Stabilize the network after a short delay for a better initial view
+        setTimeout(() => {
+            network.stopSimulation();
+        }, 5000);
     };
 
     /**
@@ -121,6 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     const initialize = async () => {
         try {
+            graphContainer.innerHTML = '<p class="text-center text-lg p-8 font-serif">Loading network intelligence...</p>';
             const response = await fetch(graphDataUrl);
             if (!response.ok) {
                 throw new Error(`Failed to load graph data. Status: ${response.status}`);
@@ -133,9 +190,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- MODAL CLOSE FUNCTIONALITY (Retained from previous version) ---
+    // --- MODAL CLOSE FUNCTIONALITY ---
     const closeModal = () => {
-        // ... (The existing closeModal function code remains unchanged)
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+        modalContent.innerHTML = '';
     };
 
     if (modalClose) modalClose.addEventListener('click', closeModal);
